@@ -1,0 +1,25 @@
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Sistemas Web</title>
+	<link  href="css/inicio.css">
+</head>
+<body>
+	<header>
+		<h1>Tecnologías y Sistemas Web</h1>
+	</header>
+<table border="1">
+	<tr>
+		<th>Juegos disponibles</th>
+	</tr>
+	<tr>
+		<td>
+		 	<a href="post/index.html">Ir a ejemplos con JSON, POST y jQuery</a><br>
+			<a href="angular/index.html">Ir a ejemplos con JSON, POST y Angular</a><br>
+			<a href = "indexppt.html"> Piedra, papel, tijera</a><br>
+			<a href="indexSudoku.html">Sudoku</a><br>
+		</td>
+	</tr>
+</table>
+</body>
+</html>

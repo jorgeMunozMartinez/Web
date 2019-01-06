@@ -31,40 +31,48 @@
 			<div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
 				<form class="login100-form validate-form">
 					<span class="login100-form-title p-b-49"> Games </span>
-					
+
 					<div class="container-login100-form-btn m-b-23">
 						<div class="wrap-login100-form-btn">
 							<div class="login100-form-bgbtn"></div>
 							<button class="login100-form-btn">Piedra, papel, tijera</button>
 						</div>
 					</div>
-					
-					<div class="container-login100-form-btn m-b-23">
+
+					<div class="container-login100-form-btn m-b-46">
 						<div class="wrap-login100-form-btn">
 							<div class="login100-form-bgbtn"></div>
 							<button class="login100-form-btn">Sudoku</button>
 						</div>
 					</div>
-					
+					<span class="login100-form-title p-b-49"> User data </span>
 					<div class="container-login100-form-btn m-b-23">
 						<div class="wrap-login100-form-btn">
 							<div class="login100-form-bgbtn"></div>
-							<button class="login100-form-btn">Configuración de la cuenta</button>
+							<a class="login100-form-btn" id="btnConfig">Configuración de
+								la cuenta</a>
 						</div>
 					</div>
-					
-					<button onclick="window.location.href='sigUp'">clicl</button>
-					
+
 					<div class="container-login100-form-btn m-b-23">
 						<div class="wrap-login100-form-btn">
 							<div class="login100-form-bgbtn"></div>
-							<button class="login100-form-btn" onclick="window.location.href='/sigUp'">Log out</button>
+							<a class="login100-form-btn" id="btnLogOut">Log out</a>
 						</div>
 					</div>
 				</form>
 			</div>
 		</div>
 	</div>
+
+	<script>
+		document.getElementById("btnConfig").onclick = function() {
+			window.location.href = "http://localhost:8080/gestorUsuario.html";
+		};
+		document.getElementById("btnLogOut").onclick = function() {
+			window.location.href = "http://localhost:8080/index.html";
+		};
+	</script>
 
 	<div id="dropDownSelect1"></div>
 

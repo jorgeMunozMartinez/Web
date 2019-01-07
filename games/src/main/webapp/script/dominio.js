@@ -35,36 +35,33 @@
  }
 
  Usuario.prototype.login = function () {
-     var email = document.getElementById("cajaEmailLogin").value;
-     var pwd = document.getElementById("cajaPwd").value;
+     var lblpsw = document.getElementById("lblpsw").value;
+     var lblname = document.getElementById("lblname").value;
 
      var request = new XMLHttpRequest();
-     request.open("post", "identificar.jsp");
+     request.open("post", "login.jsp");
      request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
      request.onreadystatechange = function () {
          if (request.readyState == 4) {
-             var resultado = JSON.parse(request.responseText);
-             if (resultado.tipo == "OK") {
-                 usuario.email = resultado.email;
-                 usuario.id = resultado.id;
-                 usuario.pathFoto = resultado.pathFoto;
-                 sessionStorage.usuario = JSON.stringify(usuario);
-                 document.getElementById("mainContentInit").setAttribute("style", "display:none");
-                 document.getElementById("mainContent").setAttribute("style", "display:visible");
-                 usuario.mostrarBienvenida(true);
-                 usuario.cargarListas();
+             var result = JSON.parse(request.responseText);
+             if (result.tipo == "OK") {
+                 player.email = result.email;
+                 player.pathFoto = result.pathFoto;
+                 player.userName = result.userName;
+                 sessionStorage.player = JSON.stringify(player);
+                 window.location.href = "http://localhost:8080/gamesList.html";
                  conectarWebSocket();
              } else {
-                 alert("Error: " + resultado.texto);
+                 alert("Error: " + result.texto);
              }
          }
      }
-     var parametros = {
-         email: email,
-         pwd: pwd
+     var p = {
+         email: lblname,
+         pwd: lblpsw
      };
-     var linea = "p=" + JSON.stringify(parametros);
-     request.send(linea);
+     var line = "p=" + JSON.stringify(p);
+     request.send(line);
  }
 
  Usuario.prototype.registrar = function () {

@@ -51,7 +51,7 @@
                     <div class="container-login100-form-btn">
                         <div class="wrap-login100-form-btn">
                             <div class="login100-form-bgbtn"></div>
-                            <button class="login100-form-btn" onclick="login()" id="btnlogin">Login</button>
+                            <button class="login100-form-btn" onclick="javascript:player.login()" id="btnlogin">Login</button>
                         </div>
                     </div>
 
@@ -76,8 +76,7 @@
     </div>
 
     <div id="dropDownSelect1"></div>
-    <script src="scripts/dominio.js"></script>
-    <script src="scripts/ws.js"></script>
+    <script src="script/dominio.js"></script>
     <script src="vendor/jquery/jquery-3.2.1.min.js"></script>
     <script src="vendor/animsition/js/animsition.min.js"></script>
     <script src="vendor/bootstrap/js/popper.js"></script>
@@ -90,26 +89,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script>
         var player = new Player();
-        var btnNewUser = document.getElementById("btnNewUser");
-        var btnLogin = document.getElementById("btnLogin");
-        var lblpsw = document.getElementById("lblpsw");
-        var lblname = document.getElementById("lblname");
-        var lostPsw = document.getElementById("LostPsw");
         document.getElementById("btnNewUser").onclick = function () {
             window.location.href = "http://localhost:8080/singUp.html";
-        };
-
-        function login() {
-            var p = {
-                userName: lblname.value,
-                pwd: lblpsw.value
-            };
-            $.post("/login", p, function (respuesta, estado) {
-                if (estado == "success") {
-                    sessionStorage.userName = respuesta.userName;
-                    window.location.href = "http://localhost:8080/gamesList.html";
-                }
-            });
         };
 
         function onSignIn(googleUser) {

@@ -15,8 +15,30 @@ public class Player {
 	private String email;
 	@Bsonable
 	private String pwd;
+	@Bsonable
+	private String img;
 	@JsonIgnore
 	private Match currentMatch;
+	
+	public Player() {
+		
+	}
+	
+	public void createPlayer(String userName, String email, String pwd, String img, Match currentMatch) {
+		this.userName = userName;
+		this.email = email;
+		this.pwd = pwd;
+		this.img = img;
+		this.currentMatch = currentMatch;		
+	}
+
+	public String getImg() {
+		return img;
+	}
+	
+	public void setImg(String img) {
+		this.img=img;
+	}
 	
 	public String getUserName() {
 		return userName;
@@ -34,24 +56,19 @@ public class Player {
 		this.email = email;
 	}
 	
-	private void setPwd(String pwd) {
+	public void setPwd(String pwd) {
 		this.pwd=pwd;
 	}
 
-	public static Player identify(String userName, String pwd) throws Exception {
+	public Player identify(String userName, String pwd) throws Exception {
 		BsonDocument criterion=new BsonDocument();
 		criterion.append("userName", new BsonString(userName)).put("pwd", new BsonString(pwd));
 		Player player=(Player) MongoBroker.get().loadOne(Player.class, criterion);
 		return player;
 	}
 
-	public static Player register(String email, String userName, String pwd) throws Exception {
-		Player player=new Player();
-		player.setEmail(email);
-		player.setUserName(userName);
-		player.setPwd(pwd);
+	public void register(Player player) throws Exception {
 		MongoBroker.get().insert(player);
-		return player;
 	}
 
 	public void setCurrentMatch(Match match) {

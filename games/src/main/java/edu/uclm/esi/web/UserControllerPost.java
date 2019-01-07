@@ -31,19 +31,22 @@ import edu.uclm.esi.web.ws.WSServer;
 public class UserControllerPost {
 	
 	@RequestMapping(value = "/register", method=RequestMethod.POST, consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
-	public Player register(String email, String userName, String pwd1, String pwd2) throws Exception {
+	public Player register(String email, String userName, String pwd1, String pwd2, String img) throws Exception {
 		if (!pwd1.equals(pwd2))
-			throw new Exception("Error: las contraseÃ±as no coinciden");
-		Player player=Player.register(email, userName, pwd1);
+			throw new Exception("ERROR: psw1 != psw2");
+		Player player = new Player ();
+		player.createPlayer(userName, email, pwd1, img, null);
+		player.register(player);
 		return player;
 	}
 	
 	
 	@RequestMapping(value="/login", method=RequestMethod.POST, consumes=MediaType.APPLICATION_FORM_URLENCODED_VALUE)
 	public Player loginPost(HttpSession session, String userName, String pwd) throws Exception {
-		Player player=Player.identify(userName, pwd);
-		session.setAttribute("player", player);
-		return player;
+		Player player = new Player();
+		Player playerI = player.identify(userName, pwd);
+		session.setAttribute("player", playerI);
+		return playerI;
 	}
 	
 	@RequestMapping(value= {"/joinGame", "/post/joinGame"}, method=RequestMethod.POST, consumes=MediaType.APPLICATION_FORM_URLENCODED_VALUE) 

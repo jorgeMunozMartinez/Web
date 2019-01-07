@@ -1,63 +1,64 @@
-
 <html>
-	<head>
-		<meta charset="UTF-8">
-		<title>Juegos</title>	
-		<link rel="stylesheet" href="resources/login.css"/>
-		<link href="https://fonts.googleapis.com/css?family=Comfortaa|Indie+Flower" rel="stylesheet">	
-		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
-		<script src="https://apis.google.com/js/api.js"></script>
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	</head>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Juegos</title>
+    <link rel="stylesheet" href="resources/login.css" />
+    <link href="https://fonts.googleapis.com/css?family=Comfortaa|Indie+Flower" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <script src="https://apis.google.com/js/api.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+
 <body>
-	<header>
-	<div data-ng-app="GameApp" data-ng-controller="GameController">
-		<h1 class="titulo">Juegos disponibles</h1>
-		<h2 class="titulo">Hola, {{userName}}</h2>
-	</div>
-		
-	</header>
-	<table class="tabla" border="1" style="margin: 0 auto;" data-ng-app="GameApp" data-ng-controller="GameController">
-	<tr>
-		<th>
-			<h3 class="titulo">Menu</h3>
-		</th>
-		<th>
-			<h3 class="titulo">Chat global</h3>
-		</th>
-	</tr>
-	<tr>
-		<td id="sudoku">
-			<div>
-				<button class="boton" onclick="login()" id="btnBuscarSudoku">Buscar partida</button>
-			</div>
-		</td>
-		<td id="piedra,papel,tijera">
-			<button class="boton" onclick="login()" id="btnBuscarPiedraPapelTijera">Buscar partida</button>
-		</td>
-		<td id="chatglobal">
-		<div id="wrapper">		
-				<button class="boton" onclick="login()" id="btnConectarse" >Conectarse</button>
-				<button class="boton" onclick="desconectarse()" id="btnDesconectarse" >Desconectarse</button>
-				<div style="clear:both"></div>
-			  <div id="chatbox"></div>    
-    		<form name="message" action="">
-    			<input class="entrada" type="text" id="textoEnviar" placeholder="Escriba su mensaje"
-						data-ng-model="textoEnviar" size="63">
-	        	<button class="boton" onclick="submit()"  id="enviarMsg">Enviar</button>
-    		</form>
-		</div>
-			
-		</td>
-	</tr>
-	</table>
-	<script>
-	var app = angular.module("GameApp", []);
-	app.controller("GameController",function($scope, $http) {
-		$scope.userName=sessionStorage.userName;
-		$scope.psw=sessionStorage.psw;
-		
-	});
-	</script>
+    <header>
+        <div data-ng-app="GameApp" data-ng-controller="GameController">
+            <h1 class="titulo">Juegos disponibles</h1>
+            <h2 class="titulo">Hola, {{userName}}</h2>
+        </div>
+
+    </header>
+    <table class="tabla" border="1" style="margin: 0 auto;" data-ng-app="GameApp" data-ng-controller="GameController">
+        <tr>
+            <th>
+                <h3 class="titulo">Menu</h3>
+            </th>
+            <th>
+                <h3 class="titulo">Chat global</h3>
+            </th>
+        </tr>
+        <tr>
+            <td id="sudoku">
+                <div>
+                    <button class="boton" onclick="login()" id="btnBuscarSudoku">Buscar partida</button>
+                </div>
+            </td>
+            <td id="piedra,papel,tijera">
+                <button class="boton" onclick="login()" id="btnBuscarPiedraPapelTijera">Buscar partida</button>
+            </td>
+            <td id="chatglobal">
+                <div id="wrapper">
+                    <button class="boton" onclick="login()" id="btnConectarse">Conectarse</button>
+                    <button class="boton" onclick="desconectarse()" id="btnDesconectarse">Desconectarse</button>
+                    <div style="clear:both"></div>
+                    <div id="chatbox"></div>
+                    <form name="message" action="">
+                        <input class="entrada" type="text" id="textoEnviar" placeholder="Escriba su mensaje" data-ng-model="textoEnviar" size="63">
+                        <button class="boton" onclick="submit()" id="enviarMsg">Enviar</button>
+                    </form>
+                </div>
+
+            </td>
+        </tr>
+    </table>
+    <script>
+        var app = angular.module("GameApp", []);
+        app.controller("GameController", function ($scope, $http) {
+            $scope.userName = sessionStorage.userName;
+            $scope.psw = sessionStorage.psw;
+
+        });
+    </script>
 </body>
+
 </html>

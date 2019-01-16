@@ -1,18 +1,8 @@
 package edu.uclm.esi.web;
 
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
-
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.apache.http.HttpResponse;
-import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.HttpClientBuilder;
 import org.json.JSONObject;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -20,6 +10,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -67,22 +58,5 @@ public class UserControllerPost {
 		result.setStatus(HttpStatus.UNAUTHORIZED);
 		
 		return result;
-	}
-	
-	@RequestMapping(value="/autenticarConTwitter", method=RequestMethod.GET)
-	public void autenticarConTwitter(HttpServletResponse response) throws ClientProtocolException, IOException {
-		String consumerKey="";
-		String consumerSecret="";
-		JSONObject keys = new JSONObject();
-		keys.put("consumerKey", consumerKey);
-		keys.put("consumerSecret", consumerSecret);
-		String p=URLEncoder.encode(keys.toString(), "UTF-8");
-		
-		String url="http://localhost:9900/autenticadorMaven/getToken.jsp?p=" +p;
-		HttpClient cliente=HttpClientBuilder.create().build();
-		HttpGet get= new HttpGet(url);
-		HttpResponse resultado=cliente.execute(get);
-		String urlAutenticador=resultado.getHeaders("urlAutenticador")[0].getValue();
-		response.sendRedirect(urlAutenticador);
 	}
 }

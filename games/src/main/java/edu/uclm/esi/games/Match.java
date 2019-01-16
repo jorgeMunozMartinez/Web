@@ -42,18 +42,18 @@ public abstract class Match {
 	}
 
 	public Match move(Player player, int[] coordinates) throws Exception {
-		if(!tieneElTurno(player))
+		if (!tieneElTurno(player))
 			throw new Exception("You are not the current player");
-		if(this.board.end())
+		if (this.board.end())
 			throw new Exception("The match is finished");
 		this.board.move(player, coordinates);
 		this.currentPlayer=(this.currentPlayer+1)%this.players.size();
 		this.winner=this.board.getWinner();
-		if(this.board.end())
+		if(this.board.end()) 
 			save();
 		return this;
 	}
-
+	
 	protected abstract void save() throws Exception;
 
 	protected abstract boolean tieneElTurno(Player player);

@@ -24,12 +24,15 @@ public class Player {
 		
 	}
 	
-	public void createPlayer(String userName, String email, String pwd, String img, Match currentMatch) {
-		this.userName = userName;
-		this.email = email;
-		this.pwd = pwd;
-		this.img = img;
-		this.currentMatch = currentMatch;		
+	public Player createPlayer(String userName, String email, String pwd, String img, Match currentMatch) throws Exception {
+		Player player = new Player();
+		player.setUserName(userName);
+		player.setEmail(email);
+		player.setPwd(pwd);
+		player.setImg(img);
+		player.setCurrentMatch(currentMatch);
+		player.register(player);
+		return player;
 	}
 
 	public String getImg() {

@@ -13,30 +13,30 @@ import edu.uclm.esi.games.tictactoe.TictactoeGame;
 
 public class Manager {
 	private Hashtable<String, Game> games;
-
+	
 	private Manager() {
-		games = new Hashtable<>();
-		Game tictactoe = new TictactoeGame();
+		games=new Hashtable<>();
+		Game tictactoe=new TictactoeGame();
 		games.put(tictactoe.getName(), tictactoe);
 		Game ppt = new PPT();
 		games.put(ppt.getName(), ppt);
 	}
-
+	
 	private static class ManagerHolder {
-		static Manager singleton = new Manager();
+		static Manager singleton=new Manager();
 	}
-
+	
 	public static Manager get() {
 		return ManagerHolder.singleton;
 	}
 
 	public Match joinGame(Player player, String gameName) {
-		Game game = this.games.get(gameName);
+		Game game=this.games.get(gameName);
 		return game.getMatch(player);
 	}
 
 	public JSONArray getGames() {
-		JSONArray jsa = new JSONArray();
+		JSONArray jsa=new JSONArray();
 		Enumeration<Game> eGames = games.elements();
 		while (eGames.hasMoreElements())
 			jsa.put(eGames.nextElement().getName());
@@ -44,11 +44,12 @@ public class Manager {
 	}
 
 	public Match move(Player player, JSONArray coordinates) throws Exception {
-		int[] iC = new int[coordinates.length()];
-		for (int i = 0; i < iC.length; i++) {
-			iC[i] = coordinates.getInt(i);
+		int [] iC = new int[coordinates.length()];
+		for (int i=0; i<iC.length; i++) {
+			iC[i]=coordinates.getInt(i);
 		}
 		return player.move(iC);
+		
 	}
 
 }

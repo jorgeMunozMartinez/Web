@@ -10,10 +10,12 @@ public class InvalidMatch extends Match {
 	public InvalidMatch(String message) {
 		this.message=message;
 	}
-	
+
+
 	public String getMessage() {
 		return message;
 	}
+
 
 	@Override
 	protected void save() throws Exception {
@@ -21,11 +23,13 @@ public class InvalidMatch extends Match {
 		
 	}
 
+
 	@Override
 	protected boolean tieneElTurno(Player player) {
 		// TODO Auto-generated method stub
 		return false;
 	}
+
 
 	@Override
 	public void calculateFirstPlayer() {

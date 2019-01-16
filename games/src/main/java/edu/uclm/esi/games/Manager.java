@@ -2,6 +2,14 @@ package edu.uclm.esi.games;
 
 public class Manager {
 
+	private static Manager me;
+
+	public static Manager get() {
+		if (me == null)
+			me = new Manager();
+		return me;
+	}
+
 	public Player singUp(String email, String userName, String pwd, String img) throws Exception {
 		Player player = new Player();
 		player.createPlayer(userName, email, pwd, img, null);
@@ -13,5 +21,4 @@ public class Manager {
 		Player player = new Player();
 		return player.identify(userName, pwd);
 	}
-
 }

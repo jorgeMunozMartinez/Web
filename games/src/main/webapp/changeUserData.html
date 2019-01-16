@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+<title>Sistemas Web</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" type="image/png" href="images/icons/favicon.ico" />
+<link rel="stylesheet" type="text/css"
+	href="vendor/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css"
+	href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css"
+	href="fonts/iconic/css/material-design-iconic-font.min.css">
+<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
+<link rel="stylesheet" type="text/css"
+	href="vendor/css-hamburgers/hamburgers.min.css">
+<link rel="stylesheet" type="text/css"
+	href="vendor/animsition/css/animsition.min.css">
+<link rel="stylesheet" type="text/css"
+	href="vendor/select2/select2.min.css">
+<link rel="stylesheet" type="text/css"
+	href="vendor/daterangepicker/daterangepicker.css">
+<link rel="stylesheet" type="text/css" href="css/util.css">
+<link rel="stylesheet" type="text/css" href="css/main.css">
+</head>
+
+<body>
+
+	<div class="limiter">
+		<div class="container-login100"
+			style="background-image: url('images/bg-01.jpg');">
+			<div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
+				<form class="login100-form validate-form">
+					<a class="enlace" href="http://localhost:8080/indexList.html">
+						Go Back</a> <span class="login100-form-title p-b-49"> Change
+						Data </span>
+
+					<div class="wrap-input100 validate-input m-b-23"
+						data-validate="Username is required">
+						<span class="label-input100">Username</span> <input id="lblnombre"
+							class="input100" type="text" name="username"
+							placeholder="Type your username"> <span
+							class="focus-input100" data-symbol="&#xf206;"></span>
+					</div>
+
+					<div class="wrap-input100 validate-input m-b-23"
+						data-validate="EMail is required">
+						<span class="label-input100">EMail</span> <input id="lblEMail"
+							class="input100" type="text" name="mail"
+							placeholder="Type your EMail"> <span
+							class="focus-input100" data-symbol="&#x2709;"></span>
+					</div>
+
+					<div class="wrap-input100 validate-input m-b-23"
+						data-validate="Password is required">
+						<span class="label-input100">Password</span> <input id="lblpsw1"
+							class="input100" type="password" name="pass"
+							placeholder="Type your password"> <span
+							class="focus-input100" data-symbol="&#xf190;"></span>
+					</div>
+
+					<div class="wrap-input100 validate-input m-b-23"
+						data-validate="Password is required">
+						<span class="label-input100">Repeat your password</span> <input
+							id="lblpsw2" class="input100" type="password" name="pass"
+							placeholder="Repeat your password"> <span
+							class="focus-input100" data-symbol="&#xf190;"></span>
+					</div>
+
+					<div class="container-login100-form-btn">
+						<div class="wrap-login100-form-btn">
+							<div class="login100-form-bgbtn"></div>
+							<button class="login100-form-btn" id="btnSingUp"
+								onclick="singUp()">Change data</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+
+	<div id="dropDownSelect1"></div>
+
+	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+	<script src="js/main.js"></script>
+
+	<script>
+		function singUp() {
+			var p = {
+				userName : lblnombre.value,
+				psw1 : lblpsw1.value,
+				psw2 : lblpsw2.value,
+				email : lblEMail.value,
+				img : null
+			};
+			var request = new XMLHttpRequest();
+			request.open("post", "loginJSP.jsp");
+			request.setRequestHeader("Content-Type",
+					"application/x-www-form-urlencoded");
+			request.onreadystatechange = function() {
+				if (request.readyState == 4) {
+					var response = JSON.parse(request.responseText);
+					var estado = response.get("type");
+					if (estado == "OK") {
+						sessionStorage.userName = response.get("email");
+						sessionStorage.img = response.get("img");
+						sessionStorage.email = response.get("email");
+						window.location.href = "http://localhost:8080/gamesList.html";
+					}
+				}
+
+			}
+			var line = "p=" + JSON.stringify(p);
+			request.send(line);
+		}
+	</script>
+
+</body>
+</html>

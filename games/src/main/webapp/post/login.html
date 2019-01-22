@@ -1,20 +1,36 @@
+
+<link rel="stylesheet" type="text/css" href="css/util.css">
+<link rel="stylesheet" type="text/css" href="css/main.css">
 <div>
-	<input type="text" id="lUserName" placeholder="user name" value="pepe"><br>
-	<input type="password" id="lPwd" placeholder="password" value="pepe123"><br>
-	<button onclick="login()">Login</button>
+	<div class="wrap-input100 m-b-23">
+		<span class="label-input100">Username</span> <input class="input100"
+			type="text" placeholder="Type your username" id="lUserName" value="">
+		<span class="focus-input100"></span>
+	</div>
+	<div class="wrap-input100 " >
+		<span class="label-input100">Password</span> <input class="input100"
+			type="password" placeholder="Type your password" id="lPwd" value="">
+		<span class="focus-input100" ></span>
+	</div>
+	<div class="container-login100-form-btn  p-t-40">
+		<div class="wrap-login100-form-btn">
+			<div class="login100-form-bgbtn"></div>
+			<button onclick="login()" class="login100-form-a" id="btnlogin">Login</button>
+		</div>
+	</div>
 </div>
 
 <script>
-function login() {
-	var p = {
-		userName : lUserName.value,
-		pwd : lPwd.value
-	};
-	$.post("/login", p, function(respuesta, estado) {
-		if (estado=="success") {
-			loadGames();
-			sessionStorage.userName=respuesta.userName;
-		}
-	});
-}
+	function login() {
+		var p = {
+			userName : lUserName.value,
+			pwd : lPwd.value
+		};
+		$.post("/login", p, function(respuesta, estado) {
+			if (estado == "success") {
+				sessionStorage.userName = respuesta.userName;
+				window.location.href = "http://localhost:8080/gamesList.html";
+			}
+		});
+	}
 </script>

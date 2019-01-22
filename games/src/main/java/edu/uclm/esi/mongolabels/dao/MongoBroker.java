@@ -30,8 +30,8 @@ public class MongoBroker {
 	private String pwd="tysweb20182019";
 	
 	private MongoBroker() {
-		this.serverUri="mongodb://" + user + ":" + pwd + "@ds159782.mlab.com:59782/juegos";
-		//this.serverUri="mongodb://localhost:27017/juegos";
+		//this.serverUri="mongodb://" + user + ":" + pwd + "@ds159782.mlab.com:59782/juegos";
+		this.serverUri="mongodb://localhost:27017/juegos";
 		MongoClientURI clientUri=new MongoClientURI(this.serverUri);
 		this.client=new MongoClient(clientUri);
 		String dbName=serverUri.substring(serverUri.lastIndexOf("/")+1);

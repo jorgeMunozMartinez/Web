@@ -29,8 +29,9 @@
     <div class="limiter" data-ng-app="GameApp" data-ng-controller="GameController">
         <div class="container-login100" style="background-image: url('images/bg-01.jpg');">
             <div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
-                <form class="login100-form validate-form">
+                <form class="login100-form ">
                     <span class="login100-form-title p-b-49" data-ng-bind="mensaje"> </span>
+                    <span class="login100-form-title p-b-49"> Games </span>
                     <div class="container-login100-form-btn m-b-23">
                         <div class="wrap-login100-form-btn">
                             <div class="login100-form-bgbtn"></div>
@@ -48,21 +49,7 @@
                     <div class="container-login100-form-btn m-b-23">
                         <div class="wrap-login100-form-btn">
                             <div class="login100-form-bgbtn"></div>
-                            <a class="login100-form-a" href="http://localhost:8080/changeUserName.html" id="btnNewName">Change user name</a>
-                        </div>
-                    </div>
-
-                    <div class="container-login100-form-btn m-b-23">
-                        <div class="wrap-login100-form-btn">
-                            <div class="login100-form-bgbtn"></div>
-                            <a class="login100-form-a" href="http://localhost:8080/changeUserName.html" id="btnNewPsw">Change password</a>
-                        </div>
-                    </div>
-
-                    <div class="container-login100-form-btn m-b-23">
-                        <div class="wrap-login100-form-btn">
-                            <div class="login100-form-bgbtn"></div>
-                            <a class="login100-form-a" href="http://localhost:8080/changeUserName.html" id="btnNewEmail">Change email</a>
+                            <a class="login100-form-a" href="http://localhost:8080/changeUserData.html" id="btnNewName">Change user user data</a>
                         </div>
                     </div>
 
@@ -72,6 +59,8 @@
                             <button class="login100-form-a" onclick="signOutGoogle()"  id="btnLogOut">Log out</button>
                         </div>
                     </div>
+                    
+                    
                 </form>
             </div>
 
@@ -106,7 +95,7 @@
         }
         var app = angular.module("GameApp", []);
         app.controller("GameController", function ($scope, $http) {
-            $scope.mensaje = "Hi, " + sessionStorage.userName;
+            $scope.mensaje = "Welcome, " + sessionStorage.userName;
         });
     </script>
 

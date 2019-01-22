@@ -2,133 +2,90 @@
 <html lang="es">
 
 <head>
-    <title>Sistemas Web</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" type="image/png" href="images/icons/favicon.ico" />
-    <link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="fonts/iconic/css/material-design-iconic-font.min.css">
-    <link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
-    <link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
-    <link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css">
-    <link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
-    <link rel="stylesheet" type="text/css" href="vendor/daterangepicker/daterangepicker.css">
-    <link rel="stylesheet" type="text/css" href="css/util.css">
-    <link rel="stylesheet" type="text/css" href="css/main.css">
-    <link href="https://fonts.googleapis.com/css?family=Comfortaa|Indie+Flower" rel="stylesheet">
+<title>Sistemas Web</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" type="image/png" href="images/icons/favicon.ico" />
+<link rel="stylesheet" type="text/css"
+	href="vendor/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css"
+	href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css"
+	href="fonts/iconic/css/material-design-iconic-font.min.css">
+<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
+<link rel="stylesheet" type="text/css"
+	href="vendor/css-hamburgers/hamburgers.min.css">
+<link rel="stylesheet" type="text/css"
+	href="vendor/animsition/css/animsition.min.css">
+<link rel="stylesheet" type="text/css"
+	href="vendor/select2/select2.min.css">
+<link rel="stylesheet" type="text/css"
+	href="vendor/daterangepicker/daterangepicker.css">
+<link rel="stylesheet" type="text/css" href="css/util.css">
+<link rel="stylesheet" type="text/css" href="css/main.css">
+<link
+	href="https://fonts.googleapis.com/css?family=Comfortaa|Indie+Flower"
+	rel="stylesheet">
 
-    <meta name="google-signin-client_id" content="969631578385-vslsc6hi07jrtrc14teodr0hoa92va2l.apps.googleusercontent.com">
+
+<meta name="google-signin-client_id"
+	content="969631578385-vslsc6hi07jrtrc14teodr0hoa92va2l.apps.googleusercontent.com">
 </head>
 
 <body>
 
-    <div class="limiter">
-        <div class="container-login100" style="background-image: url('images/bg-01.jpg');">
-            <div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
-                <form class="login100-form validate-form">
-                    <span class="login100-form-title p-b-49"> Login </span>
+	<div class="limiter">
+		<div class="container-login100"
+			style="background-image: url('images/bg-01.jpg');">
+			<div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
+				<form class="login100-form ">
+					<span class="login100-form-title p-b-49"> Login </span>
 
-                    <div class="wrap-input100 validate-input m-b-23" data-validate="Username is required">
-                        <span class="label-input100">Username</span>
-                        <input class="input100" type="text" placeholder="Type your username" id="lUserName" value="">
-                        <span class="focus-input100" data-symbol="&#xf206;"></span>
-                    </div>
+					<div class="container-login100-form-btn">
+						<div class="wrap-login100-form-btn">
+							<div class="login100-form-bgbtn"></div>
+							<a href = "post/index.html" class="login100-form-a" id="btnlogin">Login</a>
+						</div>
+					</div>
 
-                    <div class="wrap-input100 validate-input" data-validate="Password is required">
-                        <span class="label-input100">Password</span>
-                        <input class="input100" type="password" placeholder="Type your password" id="lPwd" value="">
-                        <span class="focus-input100" data-symbol="&#xf190;"></span>
-                    </div>
+					<div class="txt1 text-center p-t-20 p-b-20">
+						<span> Or Sign Up Using </span>
+					</div>
 
-                    <div class="text-right p-t-8 p-b-31">
-                        <a href="#" id="LostPsw"> Forgot password? </a>
-                    </div>
+					<div class="flex-c-m p-b-49">
+						<div class="g-signin2" data-onsuccess="onSignIn" id="btngoogle"></div>
+					</div>
 
-                    <div class="container-login100-form-btn">
-                        <div class="wrap-login100-form-btn">
-                            <div class="login100-form-bgbtn"></div>
-                            <button class="login100-form-btn" onclick="login()" id="btnlogin">Login</button>
-                        </div>
-                    </div>
+					<span class="login100-form-title p-b-30"> Sing Up </span> <a
+						href="post/index.html">Prueba entrada</a>
+					<div class="container-login100-form-btn">
+						<div class="wrap-login100-form-btn">
+							<div class="login100-form-bgbtn"></div>
+							<a href="http://localhost:8080/singUp.html"
+								class="login100-form-a" id="btnNewUser">New User </a>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
 
-                    <div class="txt1 text-center p-t-54 p-b-20">
-                        <span> Or Sign Up Using </span>
-                    </div>
+	<script src="https://apis.google.com/js/platform.js" async defer></script>
+	<script>
 
-                    <div class="flex-c-m">
-                        <div class="g-signin2" data-onsuccess="onSignIn" id="btngoogle"></div>
-                    </div>
-                    <a href="gamesList.html">Prueba entrada</a>
-                    <div class="container-login100-form-btn">
-                        <div class="wrap-login100-form-btn">
-                            <div class="login100-form-bgbtn"></div>
-                            <a href="http://localhost:8080/singUp.html" class="login100-form-a" id="btnNewUser">New User
-                            </a>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-
-    <script src="https://apis.google.com/js/platform.js" async defer></script>
-    <script src="vendor/jquery/jquery-3.2.1.min.js"></script>
-    <script src="js/main.js"></script>
-    <script>
-        function login() {
-            /*           var p = {
-				userName : lUserName.value,
-				pwd : lPwd.value
-            };
-            $.post("/login", p, function (respuesta, estado) {
-                if (estado == "success") {
-                    window.location.href = "http://localhost:8080/gamesList.html";
-                    sessionStorage.userName = respuesta.userName;
-                }
-            });*/
-
-            var p = {
-                user: lUserName.value,
-                psw: lPwd.value
-            };
-            var request = new XMLHttpRequest();
-            request.open("post", "loginJSP.jsp");
-            request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-            request.onreadystatechange = function () {
-                if (request.readyState == 4) {
-                    var response = JSON.parse(request.responseText);
-                    var estado = response.get("type");
-                    if (estado == "OK") {
-                        sessionStorage.userName = response.get("email");
-                        sessionStorage.img = response.get("img");
-                        sessionStorage.email = response.get("email");
-                        window.location.href = "http://localhost:8080/gamesList.html";
-                    }
-                }
-
-            }
-            var line = "p=" + JSON.stringify(p);
-            request.send(line);
-        }
-
-        document.getElementById("btnNewUser").onclick = function () {
-            window.location.href = "http://localhost:8080/singUp.html";
-        };
-
-        function onSignIn(googleUser) {
-            var profile = googleUser.getBasicProfile();
-            console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-            console.log('Name: ' + profile.getName());
-            console.log('Image URL: ' + profile.getImageUrl());
-            console.log('Email: ' + profile.getEmail());
-            var token = googleUser.getAuthResponse().id_token;
-            console.log('token: ' + token);
-            sessionStorage.userName = profile.getName();
-            sessionStorage.token = token;
-            window.location.href = "http://localhost:8080/gamesList.html";
-        };
-    </script>
+		function onSignIn(googleUser) {
+			var profile = googleUser.getBasicProfile();
+			console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+			console.log('Name: ' + profile.getName());
+			console.log('Image URL: ' + profile.getImageUrl());
+			console.log('Email: ' + profile.getEmail());
+			var token = googleUser.getAuthResponse().id_token;
+			console.log('token: ' + token);
+			sessionStorage.userName = profile.getName();
+			sessionStorage.token = token;
+			window.location.href = "http://localhost:8080/gamesList.html";
+		};
+	</script>
 
 
 </body>

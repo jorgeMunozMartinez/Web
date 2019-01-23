@@ -1,135 +1,99 @@
-<html>
+<!DOCTYPE html>
+<html lang="es">
+
 <head>
+<title>Sistemas Web</title>
 <meta charset="UTF-8">
-<title>Login</title>
-<link rel="stylesheet" href="resources/login.css" />
-<link
-	href="https://fonts.googleapis.com/css?family=Comfortaa|Indie+Flower"
-	rel="stylesheet">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
-<script src="https://apis.google.com/js/api.js"></script>
-<script src="https://apis.google.com/js/platform.js" async defer></script>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
 <meta name="google-signin-client_id"
 	content="969631578385-vslsc6hi07jrtrc14teodr0hoa92va2l.apps.googleusercontent.com">
+<link href="css/main.css" rel="stylesheet">
+<link href="css/util.css" rel="stylesheet">
 </head>
-<body class="cuerpo">
-	<header>
-		<h1 class="titulo">Sistemas Web</h1>
-	</header>
-	<table class="tabla" border="1" style="margin: 0 auto;">
-		<tr>
-			<th>
-				<h3 class="titulo">Nuevo usuario</h3>
-			</th>
-			<th>
-				<h3 class="titulo">Login</h3>
-			</th>
-		</tr>
-		<tr>
-			<td id="Register">
-				<div>
-					<input class="entrada" type="email" id="email" placeholder="email"
-						data-ng-model="email"> <br> <input class="entrada"
-						type="text" id="userName" placeholder="user name"
-						data-ng-model="userName"> <br> <input class="entrada"
-						type="password" id="pwd1" placeholder="password"
-						data-ng-model="pwd1"> <br> <input class="entrada"
-						type="password" id="pwd2" placeholder="repeat your password"
-						data-ng-model="pwd2"> <br>
-					<button class="boton" data-ng-click="register()">Register</button>
-					<br>
-					<div id="mensajeRegistro"></div>
-					<br>
-				</div>
-			</td>
-			<td id="Login">
-				<div>
-					<input class="entrada" type="text" id="userNameLogin"
-						data-ng-model="userName" placeholder="user name"> <br>
-					<input class="entrada" type="password" id="pwdLogin"
-						data-ng-model="pwd" placeholder="password"> <br>
-					<button class="boton" onclick="login()" id="btnLogin">Login</button>
-					<br>
-					<div class="g-signin2" data-onsuccess="onSignIn"></div>
-					<br> <a href="angular/index.html">elnace</a> <a
-						href="indexGames.html">enlace</a>
-				</div>
-			</td>
-		</tr>
 
-	</table>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+<body>
+	<div class="container-login100"
+		style="background-image: url('images/bg-01.jpg');">
+		<div class="wrap-login100 p-l-55 p-r-55 p-t-50 p-b-40">
+			<form class="login100-form ">
+				<span class="login100-form-title p-b-40"> User config </span>
+				
+				<div class="container-login100-form-btn">
+					<div class="wrap-login100-form-btn">
+						<div class="login100-form-bgbtn"></div>
+						<a href="http://localhost:8080/singUp.html"
+							class="login100-form-a" id="btnNewUser">Change user data</a>
+					</div>
+				</div>
+
+				
+			</form>
+		</div>
+	</div>
+	<script
+		src="https://apis.google.com/js/platform.js?onload=renderButton" async
+		defer></script>
 	<script>
-/*
-		function onSignIn(googleUser) {
-			var profile = googleUser.getBasicProfile();
-			var email = profile.getEmail();
-			var name = profile.getName();
-			var request = new XMLHttpRequest();
-			request.open("post","loginGoogle.jsp")
-			request.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
-			request.onreadystatechange = function() {
-				if(request.readyState == 4){
-					var response = JSON.parrse(request.responseText);
-					if(response.result == "OK"){
-						sessionStorage.setItem('email',email);
-						sessionStorage.setItem('name', name);
-						window.location.href = "indexGames.html";
-					}else{
-						onDesSingIn();
-						
-					}
-				}
-			}
-			
-		};
-		
-		var json = {
-				email : email,
-		};
-*/
 		function login() {
 			var p = {
-				userName : userNameLogin.value,
-				pwd : pwdLogin.value
+				userName : lUserName.value,
+				pwd : lPwd.value
 			};
-			sessionStorage.userName = userName;
-			sessionStorage.psw = psw;
-			$.post("/login", p, function(respuesta, estado) {
-				if (estado == "success") {
-					sessionStorage.userName = respuesta.userName;
-					window.location.href = "indexGames";
-				} else {
-					alert("Usuario o contraseña incorrecta");
-				}
-			});
+			$
+					.post(
+							"/login",
+							p,
+							function(respuesta, estado) {
+								if (estado == "success") {
+									sessionStorage.userName = respuesta.userName;
+									window.location.href = "http://localhost:8080/gamesList.html";
+								}
+							});
 		}
+		function loginII() {
+			var p = {
+				user : lUserName.value,
+				pwd : lPwd.value
+			};
+			var request = new XMLHttpRequest();
+			request.open("POST", "loginJSP.jsp");
+			request.setRequestHeader("Content-Type",
+					"application/x-www-form-urlencoded");
+			request.onreadystatechange = function() {
+				if (request.readyState == 4 && request.status == 200) {
+					var response = JSON.parse(request.responseText);
+					var estado = response.get("type");
+					if (estado == "OK") {
+						sessionStorage.userName = response.get("email");
+						sessionStorage.img = response.get("img");
+						sessionStorage.email = response.get("email");
+						window.location.href = "http://localhost:8080/gamesList.html";
+					}
+				}
 
+			}
+			request.send("p=" + JSON.stringify(p));
+		}
 		function onSignIn(googleUser) {
 			var profile = googleUser.getBasicProfile();
 			console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
 			console.log('Name: ' + profile.getName());
 			console.log('Image URL: ' + profile.getImageUrl());
 			console.log('Email: ' + profile.getEmail());
+			var token = googleUser.getAuthResponse().id_token;
+			console.log('token: ' + token);
 			sessionStorage.userName = profile.getName();
-			window.location.href = "indexGames.html";
-		}
-		
-		//no esta
-		/* function register(){
-		 if(pwd1.value.equals(pwd2.value)){
-		 var p = {
-		 userName: userName.value,
-		 psw:psw1.value,
-		
-		 }
-		 }else{
-		 alert("Contraseñas incorrectas");
-		 }
-		 var p=
-		 } */
+			sessionStorage.token = token;
+			window.location.href = "http://localhost:8080/gamesList.html";
+		};
 	</script>
+
+
 </body>
+
 </html>

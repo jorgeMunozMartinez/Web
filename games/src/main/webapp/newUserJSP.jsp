@@ -11,8 +11,8 @@
 	JSONObject object = (JSONObject) jsp.parse(data);
 
 	String name = object.get("userName").toString();
-	String psw1 = object.get("psw").toString();
-	String psw2 = object.get("psw2").toString();
+	String psw1 = object.get("pwd1").toString();
+	String psw2 = object.get("pwd2").toString();
 	String email = object.get("email").toString();
 	String img = object.get("img").toString();
 

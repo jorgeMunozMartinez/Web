@@ -26,7 +26,7 @@ public class UserControllerPost {
 		if (!pwd1.equals(pwd2))
 			throw new Exception("ERROR: psw1 != psw2");
 		Player player = new Player ();
-		player.createPlayer(userName, email, pwd1, img, null);
+		player.createPlayer(userName, email, pwd1, null, null);
 		player.register(player);
 		return player;
 	}

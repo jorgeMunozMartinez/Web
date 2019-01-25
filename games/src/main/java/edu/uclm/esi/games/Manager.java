@@ -10,9 +10,9 @@ public class Manager {
 		return me;
 	}
 
-	public Player singUp(String email, String userName, String pwd, String img) throws Exception {
+	public Player singUp(String id,String email, String userName, String pwd, byte[] img, String tipo) throws Exception {
 		Player player = new Player();
-		player.createPlayer(userName, email, pwd, img, null);
+		player.createPlayer(id,userName, email, pwd, img,tipo, null);
 		player.register(player);
 		return player;
 	}

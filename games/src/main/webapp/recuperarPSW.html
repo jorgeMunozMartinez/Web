@@ -41,9 +41,10 @@
 		};
 		$.post("/solicitarCambioPSW",p,function(respuesta, estado){
 				if(estado == "success"){
+					window.location.href = "http://localhost:8080/changePSW.html";
 					sessionStorage.valorToken = respuesta.valor;
 					sessionStorage.emailToken = respuesta.email;
-					window.location.href = "http://localhost:8080/changePSW.html";
+					
 				}else{
 					alert("Bad email");
 				}

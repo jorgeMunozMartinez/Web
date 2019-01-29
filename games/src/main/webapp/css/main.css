@@ -20,11 +20,12 @@
 	width: 150%;
 }
 
-.a-input{
+.a-input {
 	font-family: Sans-serif;
 	text-decoration: none;
 }
-.a-input:hover{
+
+.a-input:hover {
 	font-family: Sans-serif;
 	text-decoration: none;
 	color: #a64bf4;
@@ -273,6 +274,15 @@ iframe {
 	display: block;
 	font-family: Sans-serif;
 	font-size: 39px;
+	color: #333333;
+	line-height: 1.2;
+	text-align: center;
+}
+
+.login100-form-titleII {
+	display: block;
+	font-family: Sans-serif;
+	font-size: 20px;
 	color: #333333;
 	line-height: 1.2;
 	text-align: center;

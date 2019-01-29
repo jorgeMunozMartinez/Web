@@ -38,11 +38,7 @@ public class Token {
 
 	public void sendToken(Token token) {
 		EMailSenderService correo = new EMailSenderService();
-		try {
-			correo.enviarPorGmail(token.getEmail(), token.getValor());
-		} catch (Exception e) {
-			System.out.println("ERROR CORREO: " + e.getMessage());
-		}
+		correo.enviarPorGmail(token.getEmail(), token.getValor());
 	}
 
 	public void insertToken(String email, Token token) {
@@ -74,11 +70,11 @@ public class Token {
 		return "Token [email=" + email + ", valor=" + valor + "]";
 	}
 
-	public void borrarToken(String email, String tokenValor) { 
+	public void borrarToken(String email, String tokenValor) {
 		BsonDocument criterion = new BsonDocument();
 		criterion.append("email", new BsonString(email));
 		criterion.append("valor", new BsonString(tokenValor));
-		MongoBroker.get().delete("Token", criterion);		
+		MongoBroker.get().delete("Token", criterion);
 	}
 
 }

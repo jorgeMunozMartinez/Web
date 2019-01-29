@@ -20,6 +20,16 @@
 	width: 150%;
 }
 
+.a-input{
+	font-family: Sans-serif;
+	text-decoration: none;
+}
+.a-input:hover{
+	font-family: Sans-serif;
+	text-decoration: none;
+	color: #a64bf4;
+}
+
 .btn-group button {
 	padding: 10px 24px; /* Some padding */
 	cursor: pointer; /* Pointer/hand icon */

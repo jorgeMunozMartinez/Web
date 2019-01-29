@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+<title>Sistemas Web</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+<link href="css/main.css" rel="stylesheet">
+<link href="css/util.css" rel="stylesheet">
+</head>
+
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<body>
+	<div class="container-login100"
+		style="background-image: url('images/bg-01.jpg');">
+		<div class="wrap-login100 p-l-55 p-r-55 p-t-50 p-b-40">
+			<form class="login100-form ">
+				<span class="login100-form-title p-b-40"> Reset password </span>
+				<div class="wrap-input100  m-b-23">
+					<span class="label-input100">EMail</span> <input
+						class="input100" type="text" placeholder="Type your EMail"
+						id="lEmail" value=""> <span class="focus-input100"
+						data-symbol="&#xf206;"></span>
+				</div>
+				<div class="container-login100-form-btn p-t-30  p-b-20 ">
+					<div class="wrap-login100-form-btn">
+						<div class="login100-form-bgbtn"></div>
+						<button class="login100-form-btn" onclick="resetPassword ()" id="btnReset">Reset Password</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+	<script>
+	function resetPassword(){
+		var p = {
+			email : lEmail.value
+		};
+		$.post("/solicitarCambioPSW",p,function(respuesta, estado){
+				if(estado == "success"){
+					sessionStorage.valorToken = respuesta.valor;
+					sessionStorage.emailToken = respuesta.email;
+					window.location.href = "http://localhost:8080/changePSW.html";
+				}else{
+					alert("Bad email");
+				}
+			});
+		}
+	</script>
+
+</body>

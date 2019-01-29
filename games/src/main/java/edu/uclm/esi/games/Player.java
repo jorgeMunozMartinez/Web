@@ -28,17 +28,48 @@ public class Player {
 
 	}
 
-	public Player createPlayer(String id,String userName, String email, String pwd, byte[] img,String tipo, Match currentMatch)
-			throws Exception {
+	public void modificarPlayer(Player player, String userName, String email, String pwd, Match curreny) {
+		BsonDocument criterion = new BsonDocument();
+		criterion.append("email", new BsonString(email));
+		MongoBroker.get().delete("Player", criterion);
+		
+		player.setUserName(userName);
+		player.setEmail(email);
+		player.setPwd(pwd);
+		player.setCurrentMatch(currentMatch);
+		try {
+			player.register(player);
+		} catch (Exception e) {
+			System.out.println("Error modificar player: " + e.getMessage());
+		}
+	}
+
+	public Player createPlayerNormal(String userName, String email, String pwd, Match currentMatch) throws Exception {
 		Player player = new Player();
 		player.setUserName(userName);
 		player.setEmail(email);
 		player.setPwd(pwd);
-		player.setImg(img);
 		player.setCurrentMatch(currentMatch);
+		try {
+			player.register(player);
+		} catch (Exception e) {
+			System.out.println("Error create player normal: " + e.getMessage());
+		}
+		return player;
+	}
+
+	public Player createPlayerGoogle(String id, String userName, String email, Match currentMatch) {
+		Player player = new Player();
 		player.setId(id);
-		player.setTipo(tipo);
-		player.register(player);
+		player.setUserName(userName);
+		player.setEmail(email);
+		player.setTipo("Google");
+		player.setCurrentMatch(currentMatch);
+		try {
+			player.register(player);
+		} catch (Exception e) {
+			System.out.println("Error create player Google: " + e.getMessage());
+		}
 		return player;
 	}
 
@@ -69,6 +100,7 @@ public class Player {
 	public void setPwd(String pwd) {
 		this.pwd = pwd;
 	}
+
 	public String getId() {
 		return id;
 	}
@@ -92,7 +124,7 @@ public class Player {
 	public Player identify(String userName, String pwd) throws Exception {
 		BsonDocument criterion = new BsonDocument();
 		criterion.append("userName", new BsonString(userName));
-		criterion.append("pwd", new  BsonString(pwd));
+		criterion.append("pwd", new BsonString(pwd));
 		Player player = (Player) MongoBroker.get().loadOne(Player.class, criterion);
 		return player;
 	}
@@ -104,6 +136,12 @@ public class Player {
 		criterion.append("tipo", new BsonString("Google"));
 		Player player = (Player) MongoBroker.get().loadOne(Player.class, criterion);
 		return player;
+	}
+
+	public Player identifyToken(String email) {
+		BsonDocument criterion = new BsonDocument();
+		criterion.append("email", new BsonString(email));
+		return null;
 	}
 
 	public void register(Player player) throws Exception {
@@ -122,27 +160,23 @@ public class Player {
 		return this.currentMatch.move(this, coordinates);
 	}
 
-	public Player solictarToken(String userName,String email) {
-		Player player= null;
-		try {
-			BsonDocument criterion = new BsonDocument();
-			player=(Player) MongoBroker.get().loadOne(Player.class, criterion );
-			player.createToken(userName,email);
-		}catch (Exception e) {
-			// TODO: handle exception
-		}
-		return null;
-	}
-
-	private void createToken(String userName,String userEm) throws Exception {
-		Token token = new Token(userName);
-		MongoBroker.get().insert(token);
-		EMailSenderService email = new EMailSenderService();
-		email.enviarPorGmail(userEm, token.getValor());
-	}
+	/*
+	 * public Player solictarToken(String email) { Player player= null; try {
+	 * BsonDocument criterion = new BsonDocument(); criterion.append("email", new
+	 * BsonString(email)); player=(Player) MongoBroker.get().loadOne(Player.class,
+	 * criterion ); player.createToken(email); }catch (Exception e) { // TODO:
+	 * handle exception } return null; }
+	 * 
+	 * private void createToken(String email) throws Exception { Token token = new
+	 * Token(userName); MongoBroker.get().insert(token); EMailSenderService correo =
+	 * new EMailSenderService(); correo.enviarPorGmail(email, token.getValor()); }
+	 */
 
 	public void setFoto(byte[] bytes) {
-		this.img=bytes;
-		
+		this.img = bytes;
+
 	}
+
+
+
 }

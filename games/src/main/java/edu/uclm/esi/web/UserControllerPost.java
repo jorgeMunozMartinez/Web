@@ -25,6 +25,7 @@ public class UserControllerPost {
 		Token token = new Token();
 		Token tokenI = token.createToken(email);
 		token.sendToken(tokenI);
+		System.out.println(tokenI.toString());
 		return tokenI;
 	}
 
@@ -32,14 +33,17 @@ public class UserControllerPost {
 	public Player buscarToken(String email, String tokenValor, String token, String psw1, String psw2)
 			throws Exception {
 		if (!psw1.equals(psw2))
-			throw new Exception("ERROR: psw1 != psw2");
+			throw new Exception("ERROR: psw1 != p sw2");
 		else if (!tokenValor.equals(token))
 			throw new Exception("ERROR: token no iguales");
 		Token tokenObj = new Token();
 		tokenObj.borrarToken(email, tokenValor);
 		Player player = new Player();
 		Player playerI = player.identifyToken(email);
-		player.modificarPlayer(player, playerI.getUserName(), email, psw1, null);
+		System.out.println("player identif");
+		player.borrarPlayer(playerI);
+		//player.modificarPlayer(playerI.getUserName(), email, psw1, null);
+
 		return player;
 	}
 

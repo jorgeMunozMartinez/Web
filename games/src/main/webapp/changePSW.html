@@ -19,9 +19,9 @@
 		<div class="wrap-login100 p-l-55 p-r-55 p-t-50 p-b-40">
 			<form class="login100-form ">
 				<span class="login100-form-title p-b-10"> Reset password</span> <span
-					class="login100-form-titleII p-b-40"> Please do not close this
-					window</span>
-				<a class="login100-form-count " id="elem">ddddd</a>
+					class="login100-form-titleII p-b-10"> Please do not close
+					this window</span>
+				<div class="login100-form-titleII p-b-20" id="status"></div>
 				<div class="wrap-input100  m-b-23">
 					<span class="label-input100">Password</span> <input
 						class="input100" type="password"
@@ -42,25 +42,43 @@
 				<div class="container-login100-form-btn p-t-30  p-b-20 ">
 					<div class="wrap-login100-form-btn">
 						<div class="login100-form-bgbtn"></div>
-						<button class="login100-form-btn" onclick="login()" id="btnlogin">Reset</button>
+						<button class="login100-form-btn" onclick="cambio()" id="btnlogin">Reset</button>
 					</div>
 				</div>
 			</form>
 		</div>
 	</div>
 	<script>
-		function resetPassword() {
+		function cambio() {
 			var p = {
 				email : sessionStorage.emailToken,
-				tokenValor : sessionStotage.valorToken,
+				tokenValor : sessionStorage.valorToken,
 				token : lToken.value,
 				psw1 : lPsw1.value,
 				psw2 : lPsw2.value
 			};
 			$.post("/cambiarCredenciales", p, function(respuesta, estado) {
-
+				if (estado == "success") {
+					window.location.href = "http://localhost:8080/index.html";
+				}
 			});
+
+		}
+	</script>
+	<script type="text/javascript">
+		function countDown(secs, elem) {
+			var element = document.getElementById(elem);
+			element.innerHTML = "Token time live " + secs + " seconds";
+			if (secs < 1) {
+				window.location.href = "http://localhost:8080/index.html";
+			}
+			secs--;
+			var timer = setTimeout('countDown(' + secs + ',"' + elem + '")',
+					1000);
 		}
 	</script>
 
+	<script type="text/javascript">
+		countDown(300, "status");
+	</script>
 </body>

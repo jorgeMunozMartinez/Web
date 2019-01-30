@@ -288,6 +288,15 @@ iframe {
 	text-align: center;
 }
 
+.login100-form-count {
+	display: block;
+	font-family: Sans-serif;
+	font-size: 20px;
+	color: #333333;
+	line-height: 1.2;
+	text-align: center;
+}
+
 /*------------------------------------------------------------------
 [ Input ]*/
 .wrap-input100 {

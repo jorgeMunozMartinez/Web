@@ -27,24 +27,23 @@ public class Player {
 	public Player() {
 
 	}
-
-	public void modificarPlayer(Player player, String userName, String email, String pwd, Match curreny) {
+	
+	public void borrarPlayer(Player player) {
 		BsonDocument criterion = new BsonDocument();
-		criterion.append("email", new BsonString(email));
+		criterion.append("userName", new BsonString(player.getUserName()));
+		criterion.append("email", new BsonString(player.getEmail()));
 		MongoBroker.get().delete("Player", criterion);
-		
-		player.setUserName(userName);
-		player.setEmail(email);
-		player.setPwd(pwd);
-		player.setCurrentMatch(currentMatch);
-		try {
-			player.register(player);
-		} catch (Exception e) {
-			System.out.println("Error modificar player: " + e.getMessage());
-		}
+		System.out.println("player deleted");
 	}
 
-	public Player createPlayerNormal(String userName, String email, String pwd, Match currentMatch) throws Exception {
+	public Player modificarPlayer(String userName, String email, String pwd, Match current) {
+		Player playerI = new Player();
+		playerI.createPlayerNormal(userName, email, pwd, current);
+		System.out.println("player created");
+		return playerI;
+	}
+
+	public Player createPlayerNormal(String userName, String email, String pwd, Match currentMatch) {
 		Player player = new Player();
 		player.setUserName(userName);
 		player.setEmail(email);
@@ -138,10 +137,11 @@ public class Player {
 		return player;
 	}
 
-	public Player identifyToken(String email) {
+	public Player identifyToken(String email) throws Exception {
 		BsonDocument criterion = new BsonDocument();
 		criterion.append("email", new BsonString(email));
-		return null;
+		Player player = (Player) MongoBroker.get().loadOne(Player.class, criterion);
+		return player;
 	}
 
 	public void register(Player player) throws Exception {
@@ -176,7 +176,5 @@ public class Player {
 		this.img = bytes;
 
 	}
-
-
 
 }

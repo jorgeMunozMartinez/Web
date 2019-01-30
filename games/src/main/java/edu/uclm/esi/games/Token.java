@@ -32,7 +32,7 @@ public class Token {
 		String text = new BigInteger(130, random).toString(32);
 		token.setEmail(email);
 		token.setValor(text);
-		token.insertToken(email, token);
+		token.insertToken(token);
 		return token;
 	}
 
@@ -41,7 +41,7 @@ public class Token {
 		correo.enviarPorGmail(token.getEmail(), token.getValor());
 	}
 
-	public void insertToken(String email, Token token) {
+	public void insertToken(Token token) {
 		try {
 			MongoBroker.get().insert(token);
 		} catch (Exception e) {

@@ -1,5 +1,7 @@
 package edu.uclm.esi.games;
 
+import javax.websocket.Session;
+
 import org.bson.BsonDocument;
 import org.bson.BsonString;
 
@@ -16,88 +18,21 @@ public class Player {
 	@Bsonable
 	private String pwd;
 	@Bsonable
-	private byte[] img;
-	@Bsonable
-	private String id;
-	@Bsonable
 	private String tipo;
+	@Bsonable 
+	private String id;
+	private Session session;
 	@JsonIgnore
 	private Match currentMatch;
-
-	public Player() {
-
-	}
 	
-	public void borrarPlayer(Player player) {
-		BsonDocument criterion = new BsonDocument();
-		criterion.append("userName", new BsonString(player.getUserName()));
-		criterion.append("email", new BsonString(player.getEmail()));
-		MongoBroker.get().delete("Player", criterion);
-		System.out.println("player deleted");
+	
+	
+	public Session getSession() {
+		return session;
 	}
 
-	public Player modificarPlayer(String userName, String email, String pwd, Match current) {
-		Player playerI = new Player();
-		playerI.createPlayerNormal(userName, email, pwd, current);
-		System.out.println("player created");
-		return playerI;
-	}
-
-	public Player createPlayerNormal(String userName, String email, String pwd, Match currentMatch) {
-		Player player = new Player();
-		player.setUserName(userName);
-		player.setEmail(email);
-		player.setPwd(pwd);
-		player.setCurrentMatch(currentMatch);
-		try {
-			player.register(player);
-		} catch (Exception e) {
-			System.out.println("Error create player normal: " + e.getMessage());
-		}
-		return player;
-	}
-
-	public Player createPlayerGoogle(String id, String userName, String email, Match currentMatch) {
-		Player player = new Player();
-		player.setId(id);
-		player.setUserName(userName);
-		player.setEmail(email);
-		player.setTipo("Google");
-		player.setCurrentMatch(currentMatch);
-		try {
-			player.register(player);
-		} catch (Exception e) {
-			System.out.println("Error create player Google: " + e.getMessage());
-		}
-		return player;
-	}
-
-	public byte[] getImg() {
-		return img;
-	}
-
-	public void setImg(byte[] img) {
-		this.img = img;
-	}
-
-	public String getUserName() {
-		return userName;
-	}
-
-	public void setUserName(String userName) {
-		this.userName = userName;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public void setPwd(String pwd) {
-		this.pwd = pwd;
+	public void setSession(Session session2) {
+		this.session = session2;
 	}
 
 	public String getId() {
@@ -116,65 +51,87 @@ public class Player {
 		this.tipo = tipo;
 	}
 
-	public String getPwd() {
-		return pwd;
+	public String getUserName() {
+		return userName;
+	}
+	
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+	
+	public String getEmail() {
+		return email;
+	}
+	
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	
+	private void setPwd(String pwd) {
+		this.pwd=pwd;
 	}
 
-	public Player identify(String userName, String pwd) throws Exception {
-		BsonDocument criterion = new BsonDocument();
+	public static Player identify(String userName, String pwd, String tipo) throws Exception {
+		BsonDocument criterion=new BsonDocument();
 		criterion.append("userName", new BsonString(userName));
 		criterion.append("pwd", new BsonString(pwd));
-		Player player = (Player) MongoBroker.get().loadOne(Player.class, criterion);
+		criterion.append("tipo", new BsonString(tipo));
+		Player player=(Player) MongoBroker.get().loadOne(Player.class, criterion);
 		return player;
 	}
-
-	public Player identifyGoogle(String id, String userName, String email) throws Exception {
-		BsonDocument criterion = new BsonDocument();
+	public static Player identifyMail(String email, String tipo) throws Exception {
+		BsonDocument criterion=new BsonDocument();
+		criterion.append("email", new BsonString(email));
+		criterion.append("tipo", new BsonString(tipo));
+		Player player=(Player) MongoBroker.get().loadOne(Player.class, criterion);
+		return player;
+	}
+	public static Player identifyGoogle(String id, String userName, String email, String tipo) throws Exception {
+		BsonDocument criterion=new BsonDocument();
 		criterion.append("id", new BsonString(id)).put("userName", new BsonString(userName));
 		criterion.append("email", new BsonString(email));
-		criterion.append("tipo", new BsonString("Google"));
-		Player player = (Player) MongoBroker.get().loadOne(Player.class, criterion);
+		criterion.append("tipo", new BsonString(tipo));
+		Player player=(Player) MongoBroker.get().loadOne(Player.class, criterion);
 		return player;
 	}
 
-	public Player identifyToken(String email) throws Exception {
-		BsonDocument criterion = new BsonDocument();
-		criterion.append("email", new BsonString(email));
-		Player player = (Player) MongoBroker.get().loadOne(Player.class, criterion);
-		return player;
-	}
-
-	public void register(Player player) throws Exception {
+	public static Player register(String email, String userName, String pwd, String tipo) throws Exception {
+		Player player=new Player();
+		player.setEmail(email);
+		player.setUserName(userName);
+		player.setPwd(pwd);
+		player.setTipo(tipo);
 		MongoBroker.get().insert(player);
+		return player;
+	}
+	
+	public static Player registerGoogle(String email, String userName, String id, String tipo) throws Exception {
+		Player player=new Player();
+		player.setEmail(email);
+		player.setUserName(userName);
+		player.setId(id);
+		player.setTipo(tipo);
+		MongoBroker.get().insert(player);
+		return player;
+	}
+	
+	public void deletePlayer(String correo, String tipo) {
+		BsonDocument criterion=new BsonDocument();
+		criterion.append("email", new BsonString(email));
+		criterion.append("tipo", new BsonString(tipo));
+		MongoBroker.get().delete("Player", criterion);
 	}
 
 	public void setCurrentMatch(Match match) {
-		this.currentMatch = match;
+		this.currentMatch=match;
 	}
-
+	
 	public Match getCurrentMatch() {
 		return currentMatch;
 	}
 
 	public Match move(int[] coordinates) throws Exception {
 		return this.currentMatch.move(this, coordinates);
-	}
-
-	/*
-	 * public Player solictarToken(String email) { Player player= null; try {
-	 * BsonDocument criterion = new BsonDocument(); criterion.append("email", new
-	 * BsonString(email)); player=(Player) MongoBroker.get().loadOne(Player.class,
-	 * criterion ); player.createToken(email); }catch (Exception e) { // TODO:
-	 * handle exception } return null; }
-	 * 
-	 * private void createToken(String email) throws Exception { Token token = new
-	 * Token(userName); MongoBroker.get().insert(token); EMailSenderService correo =
-	 * new EMailSenderService(); correo.enviarPorGmail(email, token.getValor()); }
-	 */
-
-	public void setFoto(byte[] bytes) {
-		this.img = bytes;
-
 	}
 
 }

@@ -7,7 +7,6 @@ import org.bson.BsonDocument;
 import org.bson.BsonString;
 import org.json.JSONArray;
 import org.json.JSONObject;
-import org.springframework.beans.factory.support.ManagedArray;
 import org.springframework.stereotype.Component;
 import org.springframework.web.socket.BinaryMessage;
 import org.springframework.web.socket.TextMessage;
@@ -42,7 +41,7 @@ public class WSServer extends TextWebSocketHandler {
 	protected void handleBinaryMessage(WebSocketSession session, BinaryMessage message) {
 		Player player = (Player) session.getAttributes().get("player");
 		byte[] bytes = message.getPayload().array();
-		player.setFoto(bytes);
+		//player.setFoto(bytes);
 		BsonDocument criterion = new BsonDocument();
 		criterion.append("userName", new BsonString(player.getUserName()));
 		MongoBroker.get().delete("Player", criterion);
@@ -82,3 +81,4 @@ public class WSServer extends TextWebSocketHandler {
 		}
 	}
 }
+

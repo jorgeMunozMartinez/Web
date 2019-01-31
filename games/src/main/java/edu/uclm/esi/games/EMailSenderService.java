@@ -80,7 +80,7 @@ public class EMailSenderService {
 		try {
 			MimeMessage msg = new MimeMessage(session);
 		    msg.setSubject("Games - recuperación de contraseña");
-		    msg.setText("Copie el siguiente código en la ventana de texto:" + string);
+		    msg.setText("Copie el siguiente código en la ventana de texto: " + string );
 		    msg.setFrom(new InternetAddress(this.remitente));
 		    msg.addRecipient(Message.RecipientType.TO, new InternetAddress(email));
 		    Transport.send(msg);

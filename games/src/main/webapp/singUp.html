@@ -1,122 +1,82 @@
-<!DOCTYPE html>
-<html lang="es">
-
-<head>
-<title>Sistemas Web</title>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-
-
+<html>
+<script src="https://apis.google.com/js/platform.js" async defer></script>
 <meta name="google-signin-client_id"
-	content="969631578385-vslsc6hi07jrtrc14teodr0hoa92va2l.apps.googleusercontent.com">
+	content="919746814075-jolv4cfdal445kgnjv2a8grui43vdts4.apps.googleusercontent.com">
+<!--<meta name="google-signin-client_id"
+	content="969631578385-vslsc6hi07jrtrc14teodr0hoa92va2l.apps.googleusercontent.com">-->
 <link href="css/main.css" rel="stylesheet">
 <link href="css/util.css" rel="stylesheet">
-</head>
-
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-
 <body>
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	<div class="container-login100"
 		style="background-image: url('images/bg-01.jpg');">
 		<div class="wrap-login100 p-l-55 p-r-55 p-t-50 p-b-40">
-			<form class="login100-form ">
-				<span class="login100-form-title p-b-40"> Login </span>
-				<div class="wrap-input100  m-b-23">
-					<span class="label-input100">Username</span> <input
-						class="input100" type="text" placeholder="Type your username"
-						id="lUserName" value=""> <span class="focus-input100"
-						data-symbol="&#xf206;"></span>
+			<span class="login100-form-title p-b-40"> Sing Up </span>
+			<div class="wrap-input100  m-b-23">
+				<span class="label-input100">Username</span> <input class="input100"
+					type="text" placeholder="Type your username" id="lUserName"
+					value=""> <span class="focus-input100"
+					data-symbol="&#xf206;"></span>
+			</div>
+			<div class="wrap-input100 m-b-23 ">
+				<span class="label-input100">Email</span> <input class="input100"
+					type="text" placeholder="Type your email" id="lMail" value="">
+				<span class="focus-input100" data-symbol="&#xf190;"></span>
+			</div>
+			<div class="wrap-input100 m-b-23">
+				<span class="label-input100">Password</span> <input class="input100"
+					type="password" placeholder="Type your password" id="lPwd1"
+					value=""> <span class="focus-input100"
+					data-symbol="&#xf190;"></span>
+			</div>
+			<div class="wrap-input100 m-b-23">
+				<span class="label-input100">Repeat your Password</span> <input
+					class="input100" type="password" placeholder="Repeat your password"
+					id="lPwd2" value=""> <span class="focus-input100"
+					data-symbol="&#xf190;"></span>
+			</div>
+			<input type="file" id="img"></input>
+			<div class="container-login100-form-btn p-t-35 ">
+				<div class="wrap-login100-form-btn">
+					<div class="login100-form-bgbtn"></div>
+					<button class="login100-form-btn" onclick="subirFoto()" id="btnImg">subir
+						foto</button>
 				</div>
-				<div class="wrap-input100 m-b-23 ">
-					<span class="label-input100">Email</span> <input class="input100"
-						type="text" placeholder="Type your email" id="lMail" value="">
-					<span class="focus-input100" data-symbol="&#xf190;"></span>
+			</div>
+			<div class="container-login100-form-btn p-t-35 ">
+				<div class="wrap-login100-form-btn">
+					<div class="login100-form-bgbtn"></div>
+					<button class="login100-form-btn" onclick="singUp()" id="btnSingUP">SingUp$Post</button>
 				</div>
-				<div class="wrap-input100 m-b-23">
-					<span class="label-input100">Password</span> <input
-						class="input100" type="password" placeholder="Type your password"
-						id="lPwd1" value=""> <span class="focus-input100"
-						data-symbol="&#xf190;"></span>
-				</div>
-				<div class="wrap-input100 m-b-23">
-					<span class="label-input100">Repeat your Password</span> <input
-						class="input100" type="password"
-						placeholder="Repeat your password" id="lPwd2" value=""> <span
-						class="focus-input100" data-symbol="&#xf190;"></span>
-				</div>
-				<input type="file" id="img"></input>
-				<div class="container-login100-form-btn p-t-35 ">
-					<div class="wrap-login100-form-btn">
-						<div class="login100-form-bgbtn"></div>
-						<button class="login100-form-btn" onclick="subirFoto()"
-							id="btnImg">subir foto</button>
-					</div>
-				</div>
-				<div class="container-login100-form-btn p-t-35 ">
-					<div class="wrap-login100-form-btn">
-						<div class="login100-form-bgbtn"></div>
-						<button class="login100-form-btn" onclick="singUp()"
-							id="btnSingUP">SingUp$Post</button>
-					</div>
-				</div>
-				<div class="txt1 text-center p-b-20">
-					<span> Or Sign Up Using </span>
-				</div>
-
-				<div class="flex-c-m p-b-30">
-					<div class="g-signin2" data-onsuccess="onSignIn" id="btngoogle"></div>
-				</div>
-
-			</form>
+			</div>
 		</div>
 	</div>
-	<script
-		src="https://apis.google.com/js/platform.js?onload=renderButton" async
-		defer></script>
-	<script>
-		function subirFoto() {
-			var file = img.files[0];
-			var reader = new FileReader();
-
-			reader.onload = function(e) {
-				var blob = new Bolb([ reader.result ]);
-				var blobReader = new FileReader();
-				blolbReader.onload = function(event) {
-					var buffer = event.target.result;
-
-				}
-			}
-		}
-
-		function singUp() {
-			var p = {
-				email : lMail.value,
-				userName : lUserName.value,
-				pwd1 : lPwd1.value,
-				pwd2 : lPwd2.value
-			};
-			$.post("/register", p, function(respuesta, estado) {
-				if (estado == "success") {
-					sessionStorage.userName = respuesta.userName;
-					window.location.href = "http://localhost:8080/Menu.html";
-				}
-			});
-		}
-		function onSignIn(googleUser) {
-			var profile = googleUser.getBasicProfile();
-			var p = {
-				id : profile.getId(),
-				email : profile.getEmail(),
-				userName : profile.getName()
-			};
-			$.post("/registerGoogle", p, function(respuesta, estado) {
-				if (estado == "success") {
-					sessionStorage.userName = respuesta.userName;
-					window.location.href = "http://localhost:8080/Menu.html";
-				}
-			});
-		};
-	</script>
 </body>
+<script>
+	function singUp() {
+		var p = {
+			email : lMail.value,
+			userName : lUserName.value,
+			pwd1 : lPwd1.value,
+			pwd2 : lPwd2.value,
+			tipo : "Normal"
+		};
+		$.post("/register", p, function(respuesta, estado) {
+			if (estado == "success") {
+				sessionStorage.userName = respuesta.userName;
+				window.location.href = "http://localhost:8080/Menu.html";
+			}
+		});
+	}
+	function onSingIn(googleUser) {
+		var profile = googleUser.getBasicProfile();
+		var p = {
+			id : profile.getId(),
+			userName : profile.getName(),
+			email : profile.getEmail(),
+			tipo : "Google"
+		}
+	};
+</script>
 </html>

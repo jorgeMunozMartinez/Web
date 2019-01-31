@@ -6,8 +6,6 @@ import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 
-import edu.uclm.esi.web.ws.WSServer;
-
 public abstract class Game {
 	protected List<Match> pendingMatches;
 	protected ConcurrentHashMap<UUID, Match> inPlayMatches;
@@ -34,7 +32,6 @@ public abstract class Game {
 				match=this.pendingMatches.remove(0);
 				inPlayMatches.put(match.getId(), match);
 				match.calculateFirstPlayer();
-				WSServer.send(match.getPlayers(), match);
 			}
 		}
 		return match;

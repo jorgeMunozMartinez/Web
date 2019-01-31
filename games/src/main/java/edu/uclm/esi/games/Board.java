@@ -11,6 +11,5 @@ public abstract class Board {
 	}
 
 	public abstract void move(Player player, int[] coordinates) throws Exception;
-	public abstract Player getWinner();
-	public abstract boolean end();
+	public abstract boolean win(Player player);
 }

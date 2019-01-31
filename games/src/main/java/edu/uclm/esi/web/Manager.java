@@ -18,7 +18,7 @@ public class Manager {
 		games=new Hashtable<>();
 		Game tictactoe=new TictactoeGame();
 		games.put(tictactoe.getName(), tictactoe);
-		Game ppt = new PPT();
+		Game ppt=new PPT();
 		games.put(ppt.getName(), ppt);
 	}
 	
@@ -41,15 +41,6 @@ public class Manager {
 		while (eGames.hasMoreElements())
 			jsa.put(eGames.nextElement().getName());
 		return jsa;
-	}
-
-	public Match move(Player player, JSONArray coordinates) throws Exception {
-		int [] iC = new int[coordinates.length()];
-		for (int i=0; i<iC.length; i++) {
-			iC[i]=coordinates.getInt(i);
-		}
-		return player.move(iC);
-		
 	}
 
 }

@@ -63,4 +63,16 @@ public class TictactoeBoard extends Board {
 				squares[0][2]!=null && squares[0][2]==symbol;
 		return ristra1 || ristra2;
 	}
+
+	@Override
+	public Player getWinner() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean end() {
+		// TODO Auto-generated method stub
+		return false;
+	}
 }

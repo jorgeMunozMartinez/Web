@@ -13,25 +13,25 @@
 		style="background-image: url('images/bg-01.jpg');">
 		<div class="wrap-login100 p-l-55 p-r-55 p-t-50 p-b-40">
 			<span class="login100-form-title p-b-40"> Log out </span>
-			<div class="container-login100-form-btn p-t-30  p-b-20 ">
+			<div class="container-login100-form-btn  p-b-20 ">
 				<div class="wrap-login100-form-btn">
 					<div class="login100-form-bgbtn"></div>
-					<button class="login100-form-btn" onclick="logOut()" id="btnLogOut">Log
-						out</button>
+					<button class="login100-form-btn" onclick="signOut();"
+						id="btnLogOut">Log out</button>
 				</div>
 			</div>
-			<span class="login100-form-title p-b-40"> Games </span>
-			<div class="container-login100-form-btn">
+			<span class="login100-form-title p-b-30 "> Games </span>
+			<div class="container-login100-form-btn p-b-20">
 				<div class="wrap-login100-form-btn">
 					<div class="login100-form-bgbtn"></div>
-					<button class="login100-form-btn" onclick="joinPiedra()"
+					<button class="login100-form-btn" onclick="ppt()"
 						id="btnPiedraPapelTijera">Piedra Papel Tijera</button>
 				</div>
 			</div>
-			<div class="container-login100-form-btn">
+			<div class="container-login100-form-btn p-b-20">
 				<div class="wrap-login100-form-btn">
 					<div class="login100-form-bgbtn"></div>
-					<button class="login100-form-btn" onclick="joinSudoku()"
+					<button class="login100-form-btn" onclick="sudoku()"
 						id="btnSudoku">Sudoku</button>
 				</div>
 			</div>
@@ -39,10 +39,16 @@
 	</div>
 </body>
 <script>
-	var ws;
-
-	function conectarWebSocket() {
-		ws = new WebSocket("ws://" + window.location.hostname + ":"
-				+ window.location.port + "/servidorDeChat");
+	function signOut() {
+		var auth2 = gapi.auth2.getAuthInstance();
+		auth2.signOut().then(function() {
+			window.location.href = "http://localhost:8080/index.html";
+		});
+	}
+	function ppt() {
+		window.location.href = "http://localhost:8080/ppt.html";
+	}
+	function sudoku() {
+		window.location.href = "http://localhost:8080/sudoku.html";
 	}
 </script>

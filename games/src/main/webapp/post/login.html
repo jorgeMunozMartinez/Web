@@ -9,10 +9,13 @@ function login() {
 	var p = {
 		userName : lUserName.value,
 		pwd : lPwd.value
+		tipo : "Normal"
 	};
 	$.post("/login", p, function(respuesta, estado) {
 		if (estado=="success") {
+			alert("OK");
 			loadGames();
+			
 			sessionStorage.userName=respuesta.userName;
 		}
 	});

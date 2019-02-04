@@ -15,6 +15,24 @@
 		rgba(102, 175, 233, .6);
 }
 
+.grid {
+	background-color: grey;
+	height: 42px;
+	width: 42px;
+}
+
+.grid:hover {
+	background-color: #666666;
+}
+
+.celdaBorde{
+	border-left: 3px solid black;
+}
+
+.bordeTabla td{
+	border-bottom: 3px solid black;
+}
+
 .imagen {
 	height: 150%;
 	width: 150%;

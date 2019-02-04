@@ -1,7 +1,6 @@
 package edu.uclm.esi.games.ppt;
 
 import edu.uclm.esi.games.Board;
-import edu.uclm.esi.games.Match;
 import edu.uclm.esi.games.Player;
 
 public class PPTBoard extends Board {
@@ -91,6 +90,12 @@ public class PPTBoard extends Board {
 			}
 		}
 		return true;
+	}
+
+	@Override
+	protected boolean win(Player player) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 }

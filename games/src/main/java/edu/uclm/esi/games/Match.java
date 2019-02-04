@@ -1,16 +1,29 @@
 package edu.uclm.esi.games;
 
+import java.math.BigInteger;
+import java.security.SecureRandom;
 import java.util.UUID;
 import java.util.Vector;
 
+import edu.uclm.esi.mongolabels.labels.Bsonable;
+
 public abstract class Match {
+	@Bsonable
 	protected UUID id;
+	@Bsonable
+	protected String identif;
+	@Bsonable
 	protected Vector<Player> players;
+	@Bsonable
 	protected int currentPlayer;
+	@Bsonable
 	protected Player winner;
+	@Bsonable
 	protected Board board;
 	
 	public Match() {
+		SecureRandom random = new SecureRandom();
+		this.identif = new BigInteger(130, random).toString(32);
 		this.id=UUID.randomUUID();
 		this.players=new Vector<>();
 		this.currentPlayer=-1;
@@ -54,5 +67,7 @@ public abstract class Match {
 	}
 
 	public abstract void calculateFirstPlayer();
+
+	protected abstract void save() throws Exception ;
 
 }

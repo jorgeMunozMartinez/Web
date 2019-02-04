@@ -16,4 +16,10 @@ public class TictactoeMatch extends Match {
 		this.currentPlayer=dado ? 0 : 1;
 		this.currentPlayer=0;   // puesto a propósito con fines de desarrollo y test para que empiece Pepe
 	}
+
+	@Override
+	protected void save() throws Exception {
+		// TODO Auto-generated method stub
+		
+	}
 }

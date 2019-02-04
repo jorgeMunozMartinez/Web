@@ -8,7 +8,8 @@ import org.json.JSONArray;
 import edu.uclm.esi.games.Game;
 import edu.uclm.esi.games.Match;
 import edu.uclm.esi.games.Player;
-import edu.uclm.esi.games.ppt.PPT;
+import edu.uclm.esi.games.ppt.PPTGame;
+import edu.uclm.esi.games.sudoku.SudokuGame;
 import edu.uclm.esi.games.tictactoe.TictactoeGame;
 
 public class Manager {
@@ -18,8 +19,10 @@ public class Manager {
 		games=new Hashtable<>();
 		Game tictactoe=new TictactoeGame();
 		games.put(tictactoe.getName(), tictactoe);
-		Game ppt=new PPT();
+		Game ppt=new PPTGame();
 		games.put(ppt.getName(), ppt);
+		Game sudoku = new SudokuGame();
+		games.put(sudoku.getName(), sudoku);
 	}
 	
 	private static class ManagerHolder {
@@ -41,6 +44,14 @@ public class Manager {
 		while (eGames.hasMoreElements())
 			jsa.put(eGames.nextElement().getName());
 		return jsa;
+	}
+
+	public Match move(Player player, JSONArray coordinates) throws Exception {
+		int [] iC = new int[coordinates.length()];
+		for (int i=0; i<iC.length; i++) {
+			iC[i]=coordinates.getInt(i);
+		}
+		return player.move(iC);
 	}
 
 }

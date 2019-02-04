@@ -27,7 +27,6 @@ public class UserControllerPost {
 			}
 			token = new Token();
 			token.createToken(email);
-			session.setAttribute("token", token);
 		} catch (Exception e) {
 			System.out.println(e.toString());
 		}
@@ -35,26 +34,26 @@ public class UserControllerPost {
 	}
 
 	@RequestMapping(value = "/refactor", method = RequestMethod.POST, consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
-	public void refactor(HttpSession session, String token, String psw1, String psw2, String email)  {	
+	public void refactor(HttpSession session, String token, String psw1, String psw2, String email) {
 		try {
 			Token tokenO = new Token();
 			tokenO = tokenO.tokenEmail(email);
 			Player player = Player.identifyMail(email, "Normal");
-			if(tokenO.getValor().equals(token)) {
-				if(psw1.equals(psw2)) {
+			if (tokenO.getValor().equals(token)) {
+				if (psw1.equals(psw2)) {
 					tokenO.borrarToken(email, token);
 					player.deletePlayer(email, "Normal");
 					player.register(email, player.getUserName(), psw1, "Normal");
-				}else {
+				} else {
 					throw new Exception("Error: password not equals");
 				}
-			}else {
+			} else {
 				throw new Exception("Error: token not equals");
 			}
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
-		
+
 	}
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST, consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
@@ -87,12 +86,23 @@ public class UserControllerPost {
 		if (!pwd1.equals(pwd2))
 			throw new Exception("Error: contraseñas distintas");
 		try {
-			player = Player.identifyMail(email, "Normal");		
-		}catch(Exception e) {
+			player = Player.identifyMail(email, "Normal");
+		} catch (Exception e) {
 			player = Player.register(email, userName, pwd1, tipo);
 		}
 		return player;
 	}
+
+	@RequestMapping(value = "/join", method = RequestMethod.POST, consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+	public Match joinppt(HttpSession session, String gameName) throws Exception {
+		Player player = (Player) session.getAttribute("player");
+		if (player == null)
+			throw new Exception("You need to be logged");
+		Match match = Manager.get().joinGame(player, gameName.substring(0, gameName.length() - 1));
+		WSServer.send(match.getPlayers(), match);
+		return match;
+	}
+
 	@RequestMapping(value = { "/joinGame",
 			"/post/joinGame" }, method = RequestMethod.POST, consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
 	public Match joinGamePost(HttpSession session, @RequestBody String gameName) throws Exception {

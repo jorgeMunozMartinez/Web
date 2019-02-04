@@ -1,0 +1,90 @@
+<html>
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+<link href="css/main.css" rel="stylesheet">
+<link href="css/util.css" rel="stylesheet">
+<body>
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<div class="container-login100"
+		style="background-image: url('images/bg-01.jpg');">
+		<div class="wrap-login100 p-l-55 p-r-55 p-t-50 p-b-40">
+			<span class="login100-form-title p-b-40"> Piedra Papel Tijera
+			</span>
+			<div class="container-login100-form-btn p-b-20 ">
+				<div class="wrap-login100-form-btn">
+					<div class="login100-form-bgbtn"></div>
+					<button class="login100-form-btn" onclick="myFunction()"
+						id="btnReset">Buscar oponentes</button>
+				</div>
+			</div>
+			<div>
+				<p class="input100" id="demo"></p>
+			</div>
+			<div class="container-login100-form-btn ">
+				<div class="wrap-login100-form-btn">
+					<div class="login100-form-bgbtn"></div>
+					<button class="login100-form-btn" onclick="enviar()" id="btnReset">Piedra</button>
+				</div>
+			</div>
+			<div class="container-login100-form-btn p-t-30 ">
+				<div class="wrap-login100-form-btn">
+					<div class="login100-form-bgbtn"></div>
+					<button class="login100-form-btn" onclick="enviar()" id="btnReset">Papel</button>
+				</div>
+			</div>
+			<div class="container-login100-form-btn p-t-30 ">
+				<div class="wrap-login100-form-btn">
+					<div class="login100-form-bgbtn"></div>
+					<button class="login100-form-btn" onclick="enviar()" id="btnReset">Tijera</button>
+				</div>
+			</div>
+			<div class="p-t-30">
+				<p class="input100" id="resul">Resultado:</p>
+			</div>
+			<div class="p-t-30">
+				<p class="input100" id="oponente">Seleccion del oponente:</p>
+			</div>
+			<div class="p-t-30">
+				<p class="input100" id="propia">Seleccion propia:</p>
+			</div>
+		</div>
+	</div>
+</body>
+<script>
+	var player0, player1;
+	var ws;
+	function myFunction() {
+		ws = new WebSocket("ws://localhost:8080/gamews");
+		ws.onopen = function() {
+			var p = {
+				TYPE : "joinGame",
+				game : "ppt"
+			}
+			ws.send(JSON.stringify(p));
+		}
+		ws.onmessage = function(message) {
+			var data = message.data;
+			data = JSON.parse(data);
+			if (data.TYPE == "search") {
+				document.getElementById("demo").innerHTML = "" + data.text;
+			} else if (data.TYPE == "match") {
+				document.getElementById("demo").innerHTML = "" + data.text;
+				player0 = data.player0;
+				player1 = data.player1;
+			}
+		}
+	}
+	function enviar(valor) {
+		var p = {
+			TYPE : "MOVEMENT",
+			coordinates : [valor],
+		}
+		ws.send(JSON.stringify(p));
+		ws.onmessage = function(message){
+			if (data.TYPE == "match") {
+				document.getElementById("demo").innerHTML = "" + data.text;
+			}
+		}
+	}
+	
+</script>

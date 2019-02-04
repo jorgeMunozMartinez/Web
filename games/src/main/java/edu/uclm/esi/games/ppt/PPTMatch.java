@@ -11,20 +11,19 @@ public class PPTMatch extends Match {
 		super();
 		this.board = new PPTBoard(this);
 	}
-
-	@Override
-	public void calculateFirstPlayer() {
-		// TODO Auto-generated method stub
-	}
 	
 	protected boolean tieneElTurno(Player player) {
 		return true;
 	}
 
 	@Override
-	protected void save() throws Exception {
-		Result result = new Result(this.getPlayers().get(0).getUserName(),this.getPlayers().get(1).getUserName(),this.winner.getUserName());
-		MongoBroker.get().insert(result);
+	public void calculateFirstPlayer() {
+		// TODO Auto-generated method stub
+
 	}
 
+	protected void save() throws Exception {
+		Result result=new Result(this.getPlayers().get(0).getUserName(), this.getPlayers().get(1).getUserName(), this.winner.getUserName());
+		MongoBroker.get().insert(result);
+	}
 }

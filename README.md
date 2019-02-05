@@ -4,6 +4,5 @@
 ----
 > Usuario y contraseña de la BBDD
 >> Usuario: Makaflais
-
 >> Contraseña: makaflais123
 

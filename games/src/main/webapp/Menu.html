@@ -76,7 +76,7 @@
 			var data = message.data;
 			data = JSON.parse(data);
 			if (data.TYPE == "chat") {
-				alert("Youre connected to chat");
+
 				var text = document.getElementById("chatbox");
 				text.innerHTML = " " + text.innerHTML + "\n" + data.text;
 			} else if (data.TYPE == "msg") {
@@ -86,7 +86,7 @@
 			}
 		}
 		ws.onclose = function() {
-			alert("Youre disconnected from chat");
+
 			document.getElementById("btnConnect").disabled = false;
 			document.getElementById("btnDC").disabled = true;
 			var text = document.getElementById("chatbox");

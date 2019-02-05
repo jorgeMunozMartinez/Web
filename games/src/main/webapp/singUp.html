@@ -65,7 +65,7 @@
 		$.post("/register", p, function(respuesta, estado) {
 			if (estado == "success") {
 				sessionStorage.userName = respuesta.userName;
-				window.location.href = "http://localhost:8080/menu.html";
+				window.location.href = "http://localhost:8080/index.html";
 			}
 		});
 	}

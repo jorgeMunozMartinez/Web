@@ -116,7 +116,7 @@
 				document.getElementById("btnTijera").disabled = true;
 			} else if (data.TYPE = "fin") {
 				document.getElementById("resul").innerHTML = "" + data.text;
-				alert();
+				alert(data.text);
 				ws.onclose();
 			}
 		}

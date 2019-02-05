@@ -1,12 +1,5 @@
 #chatbox {
-	text-align: left;
-	margin: 0 auto;
-	margin-bottom: 25px;
-	background: #fff;
-	height: 375px;
-	width: 390px;
-	border: 1px solid #5b2c6f;
-	overflow: auto;
+	
 }
 
 #chatbox:hover {
@@ -25,11 +18,11 @@
 	background-color: #666666;
 }
 
-.celdaBorde{
+.celdaBorde {
 	border-left: 3px solid black;
 }
 
-.bordeTabla td{
+.bordeTabla td {
 	border-bottom: 3px solid black;
 }
 
@@ -590,5 +583,140 @@ iframe {
 	.wrap-login100 {
 		padding-left: 15px;
 		padding-right: 15px;
+	}
+}
+/* Diseño para tabletas */
+@media screen and (min-width: 800px) {
+	#chatbox {
+		text-align: left;
+		margin: 0 auto;
+		margin-bottom: 25px;
+		background: #fff;
+		height: 375px;
+		width: 840px;
+		border: 1px solid #5b2c6f;
+		overflow: auto;
+	}
+	.wrap-login100 {
+		width: 100%;
+	}
+	.enlace {font-size 28px
+		
+	}
+	.enlace:focus {
+		font-size: 34px;
+	}
+	.enlace:hover {
+		font-size: 28px;
+	}
+	a {
+		font-size: 28px;
+	}
+	p {
+		font-size: 28px;
+	}
+	.txt1 {
+		font-size: 28px;
+	}
+	.txt2 {
+		font-size: 28px;
+	}
+	.login100-form-title {
+		font-size: 78px;
+	}
+	.login100-form-titleII {
+		font-size: 40px;
+	}
+	.label-input100 {
+		font-size: 28px;
+	}
+	.input100 {
+		font-size: 32px;
+	}
+	.focus-input100::after {
+		font-size: 44px;
+	}
+	.login100-form-btn {
+		font-size: 32px;
+	}
+	.login100-form-a {
+		font-size: 32px;
+	}
+	.alert-validate::before {
+		font-size: 26px;
+	}
+	.alert-validate::after {
+		font-size: 32px;
+	}
+	.login100-social-item {
+		font-size: 50px;
+	}
+}
+
+/* Diseño para PC */
+@media screen and (min-width: 1025px) {
+	#chatbox {
+		text-align: left;
+		margin: 0 auto;
+		margin-bottom: 25px;
+		background: #fff;
+		height: 375px;
+		width: 390px;
+		border: 1px solid #5b2c6f;
+		overflow: auto;
+	}
+	.wrap-login100 {
+		width: 500px;
+	}
+	.enlace {font-size 14px
+		
+	}
+	.enlace:focus {
+		font-size: 17px;
+	}
+	.enlace:hover {
+		font-size: 14px;
+	}
+	a {
+		font-size: 14px;
+	}
+	p {
+		font-size: 14px;
+	}
+	.txt1 {
+		font-size: 14px;
+	}
+	.txt2 {
+		font-size: 14px;
+	}
+	.login100-form-title {
+		font-size: 39px;
+	}
+	.login100-form-titleII {
+		font-size: 20px;
+	}
+	.label-input100 {
+		font-size: 14px;
+	}
+	.input100 {
+		font-size: 16px;
+	}
+	.focus-input100::after {
+		font-size: 22px;
+	}
+	.login100-form-btn {
+		font-size: 16px;
+	}
+	.login100-form-a {
+		font-size: 16px;
+	}
+	.alert-validate::before {
+		font-size: 13px;
+	}
+	.alert-validate::after {
+		font-size: 16px;
+	}
+	.login100-social-item {
+		font-size: 25px;
 	}
 }

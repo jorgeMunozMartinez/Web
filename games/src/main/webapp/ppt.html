@@ -1,0 +1,134 @@
+<html>
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+<link href="css/main.css" rel="stylesheet">
+<link href="css/util.css" rel="stylesheet">
+<body>
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<div class="container-login100"
+		style="background-image: url('images/bg-01.jpg');">
+		<div class="wrap-login100 p-l-55 p-r-55 p-t-50 p-b-40">
+			<span class="login100-form-title p-b-40"> Piedra Papel Tijera
+			</span>
+			<div class="login100-form-titleII p-b-20" id="status"></div>
+			<div class="container-login100-form-btn p-b-20 ">
+				<div class="wrap-login100-form-btn">
+					<div class="login100-form-bgbtn"></div>
+					<button class="login100-form-btn" onclick="myFunction()"
+						id="btnReset">Buscar oponentes</button>
+				</div>
+			</div>
+			<div>
+				<p class="input100" id="demo"></p>
+			</div>
+			<div class="container-login100-form-btn ">
+				<div class="wrap-login100-form-btn">
+					<div class="login100-form-bgbtn"></div>
+					<button class="login100-form-btn" onclick="enviar(0)"
+						id="btnPiedra">Piedra</button>
+				</div>
+			</div>
+			<div class="container-login100-form-btn p-t-30 ">
+				<div class="wrap-login100-form-btn">
+					<div class="login100-form-bgbtn"></div>
+					<button class="login100-form-btn" onclick="enviar(1)" id="btnPapel">Papel</button>
+				</div>
+			</div>
+			<div class="container-login100-form-btn p-t-30 ">
+				<div class="wrap-login100-form-btn">
+					<div class="login100-form-bgbtn"></div>
+					<button class="login100-form-btn" onclick="enviar(2)"
+						id="btnTijera">Tijera</button>
+				</div>
+			</div>
+			<div class="p-t-30">
+				<p class="input100" id="resul"></p>
+			</div>
+			<div class="p-t-30">
+				<p class="input100" id="est"></p>
+			</div>
+			<div class="p-t-30">
+				<p class="input100" id="oponente"></p>
+			</div>
+		</div>
+	</div>
+</body>
+<script>
+	document.getElementById("btnPiedra").disabled = true;
+	document.getElementById("btnPapel").disabled = true;
+	document.getElementById("btnTijera").disabled = true;
+	var player0, player1;
+	var ws;
+	var p = {
+		TYPE : "MOVEMENT",
+		coordinates : Math.random() * (2)
+	}
+	function myFunction() {
+		ws = new WebSocket("ws://localhost:8080/gamews");
+		ws.onopen = function() {
+			var p = {
+				TYPE : "joinGame",
+				game : "ppt"
+			}
+			ws.send(JSON.stringify(p));
+		}
+		ws.onmessage = function(message) {
+			var data = message.data;
+			data = JSON.parse(data);
+			if (data.TYPE == "search") {
+				document.getElementById("demo").innerHTML = "" + data.text;
+			} else if (data.TYPE == "match") {
+				document.getElementById("demo").innerHTML = "" + data.text;
+				document.getElementById("btnPiedra").disabled = false;
+				document.getElementById("btnPapel").disabled = false;
+				document.getElementById("btnTijera").disabled = false;
+			} else if (data.TYPE == "empate") {
+				document.getElementById("resul").innerHTML = "" + data.text;
+				document.getElementById("oponente").innerHTML = ""
+						+ data.selected;
+				document.getElementById("est").innerHTML = "" + data.status;
+				document.getElementById("btnPiedra").disabled = false;
+				document.getElementById("btnPapel").disabled = false;
+				document.getElementById("btnTijera").disabled = false;
+
+			} else if (data.TYPE == "gana") {
+				document.getElementById("resul").innerHTML = "" + data.text;
+				document.getElementById("oponente").innerHTML = ""
+						+ data.selected;
+				document.getElementById("est").innerHTML = "" + data.status;
+				document.getElementById("btnPiedra").disabled = false;
+				document.getElementById("btnPapel").disabled = false;
+				document.getElementById("btnTijera").disabled = false;
+
+			} else if (data.TYPE == "pierde") {
+				document.getElementById("resul").innerHTML = "" + data.text;
+				document.getElementById("oponente").innerHTML = ""
+						+ data.selected;
+				document.getElementById("est").innerHTML = "" + data.status;
+				document.getElementById("btnPiedra").disabled = false;
+				document.getElementById("btnPapel").disabled = false;
+				document.getElementById("btnTijera").disabled = false;
+
+			} else if (data.TYPE = "espera") {
+				document.getElementById("resul").innerHTML = "" + data.text;
+				document.getElementById("btnPiedra").disabled = true;
+				document.getElementById("btnPapel").disabled = true;
+				document.getElementById("btnTijera").disabled = true;
+			} else if (data.TYPE = "fin") {
+				document.getElementById("resul").innerHTML = "" + data.text;
+				alert(data.text);
+				ws.onclose();
+			}
+		}
+		ws.onclose = function() {
+			window.location.href = "http://localhost:8080/menu.html";
+		}
+	}
+	function enviar(valor) {
+		p = {
+			TYPE : "MOVEMENT",
+			coordinates : valor
+		}
+		ws.send(JSON.stringify(p));
+	}
+</script>

@@ -1,0 +1,91 @@
+<html>
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+<meta name="google-signin-client_id"
+	content="919746814075-jolv4cfdal445kgnjv2a8grui43vdts4.apps.googleusercontent.com">
+<!--<meta name="google-signin-client_id"
+	content="969631578385-vslsc6hi07jrtrc14teodr0hoa92va2l.apps.googleusercontent.com">-->
+<link href="css/main.css" rel="stylesheet">
+<link href="css/util.css" rel="stylesheet">
+<body>
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<div class="container-login100"
+		style="background-image: url('images/bg-01.jpg');">
+		<div class="wrap-login100 p-l-55 p-r-55 p-t-50 p-b-40">
+			<span class="login100-form-title p-b-40"> Login </span>
+			<div class="wrap-input100  m-b-23">
+				<span class="label-input100">Username</span> <input class="input100"
+					type="text" placeholder="Type your username" id="lUserName"
+					value=""> <span class="focus-input100"
+					data-symbol="&#xf206;"></span>
+			</div>
+
+			<div class="wrap-input100 ">
+				<span class="label-input100">Password</span> <input class="input100"
+					type="password" placeholder="Type your password" id="lPwd" value="">
+				<span class="focus-input100" data-symbol="&#xf190;"></span>
+			</div>
+			<div class="container-login100-form-btn p-t-30  p-b-20 ">
+				<div class="wrap-login100-form-btn">
+					<div class="login100-form-bgbtn"></div>
+					<button class="login100-form-btn" onclick="login()" id="btnlogin">Login</button>
+				</div>
+			</div>
+			<a class="a-input" href="http://localhost:8080/changePSW.html">Forgot
+				your password?</a>
+			<div class="txt1 text-center p-b-20">
+				<span> Or Login Using </span>
+			</div>
+			<div class="flex-c-m p-b-30">
+				<div class="g-signin2" data-onsuccess="onLogIn" id="btngoogleLogin"></div>
+			</div>
+			<div class="txt1 text-center p-b-20">
+				<span> Don´t have an account? </span>
+			</div>
+			<div class="container-login100-form-btn">
+				<div class="wrap-login100-form-btn">
+					<div class="login100-form-bgbtn"></div>
+					<a href="http://localhost:8080/singUp.html" class="login100-form-a"
+						id="btnNewUser">Sing Up</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+<script>
+	function login() {
+		var p = {
+			userName : lUserName.value,
+			pwd : lPwd.value,
+			tipo : "Normal"
+		};
+
+		$.post("/login", p, function(respuesta, estado) {
+			if (estado == "success") {
+				window.location.href = "http://localhost:8080/menu.html";
+				sessionStorage.userName = respuesta.userName;
+			}else{
+				alert("Error");
+			}
+		});
+
+	}
+	function onLogIn(googleUser) {
+		var profile = googleUser.getBasicProfile();
+		var p = {
+			id : profile.getId(),
+			userName : profile.getName(),
+			email : profile.getEmail(),
+			tipo : "Google"
+		}
+		$.post("/loginGoogle", p, function(respuesta, estado) {
+			if (estado == "success") {
+				sessionStorage.userName = respuesta.userName;
+				window.location.href = "http://localhost:8080/menu.html";
+			} else {
+				alert("User not registered");
+			}
+		});
+	};
+</script>
+</html>

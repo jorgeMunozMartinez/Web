@@ -1,0 +1,206 @@
+{
+  "id": "e27d0a93-1d3b-4daa-8cbc-a183b7386e33",
+  "version": "2.0",
+  "name": "joinPPT",
+  "url": "http://localhost:8080",
+  "tests": [{
+    "id": "f2ed5343-e8d6-47a4-a448-abc3a0b53b45",
+    "name": "joinPPT",
+    "commands": [{
+      "id": "b1bfb129-b2c5-4cfa-8fac-68d965768f4c",
+      "comment": "",
+      "command": "open",
+      "target": "/index.html",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "8af2aaa0-b137-4e8b-bbbf-7b50dda8990f",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1518x806",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "f6e4783e-7057-4ceb-9401-193778735b47",
+      "comment": "",
+      "command": "click",
+      "target": "id=btnNewUser",
+      "targets": [
+        ["id=btnNewUser", "id"],
+        ["css=#btnNewUser", "css:finder"],
+        ["css=#btnNewUser", "css"],
+        ["xpath=//a[contains(text(),'Sing Up')]", "xpath:link"],
+        ["xpath=//a[@id='btnNewUser']", "xpath:attributes"],
+        ["xpath=//a[@href='http://localhost:8080/singUp.html']", "xpath:href"],
+        ["xpath=//div[7]/div/a", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "10a8cccb-b4ff-4026-88fe-f72c5b62081f",
+      "comment": "",
+      "command": "click",
+      "target": "id=lUserName",
+      "targets": [
+        ["id=lUserName", "id"],
+        ["css=#lUserName", "css:finder"],
+        ["css=#lUserName", "css"],
+        ["xpath=//input[@id='lUserName']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "d6640188-382c-41e7-aa4c-a571804fafa8",
+      "comment": "",
+      "command": "type",
+      "target": "id=lUserName",
+      "targets": [
+        ["id=lUserName", "id"],
+        ["css=#lUserName", "css:finder"],
+        ["css=#lUserName", "css"],
+        ["xpath=//input[@id='lUserName']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "ppt"
+    }, {
+      "id": "f66923b8-1956-4dfe-826b-0346e85abec2",
+      "comment": "",
+      "command": "type",
+      "target": "id=lMail",
+      "targets": [
+        ["id=lMail", "id"],
+        ["css=#lMail", "css:finder"],
+        ["css=#lMail", "css"],
+        ["xpath=//input[@id='lMail']", "xpath:attributes"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": "ppt@ppt"
+    }, {
+      "id": "8c8c630c-3495-4e22-bb4b-f9c95ca18e36",
+      "comment": "",
+      "command": "type",
+      "target": "id=lPwd1",
+      "targets": [
+        ["id=lPwd1", "id"],
+        ["css=#lPwd1", "css:finder"],
+        ["css=#lPwd1", "css"],
+        ["xpath=//input[@id='lPwd1']", "xpath:attributes"],
+        ["xpath=//div[3]/input", "xpath:position"]
+      ],
+      "value": "ppt"
+    }, {
+      "id": "f91479e5-2c57-41bd-b39c-16912ae133b0",
+      "comment": "",
+      "command": "type",
+      "target": "id=lPwd2",
+      "targets": [
+        ["id=lPwd2", "id"],
+        ["css=#lPwd2", "css:finder"],
+        ["css=#lPwd2", "css"],
+        ["xpath=//input[@id='lPwd2']", "xpath:attributes"],
+        ["xpath=//div[4]/input", "xpath:position"]
+      ],
+      "value": "ppt"
+    }, {
+      "id": "a41925c9-f00f-4612-b4dc-d12fe5423eba",
+      "comment": "",
+      "command": "click",
+      "target": "id=btnSingUP",
+      "targets": [
+        ["id=btnSingUP", "id"],
+        ["css=#btnSingUP", "css:finder"],
+        ["css=#btnSingUP", "css"],
+        ["xpath=//button[@id='btnSingUP']", "xpath:attributes"],
+        ["xpath=//button", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "beb752c1-4ea7-4d67-b757-62b73ef9fad6",
+      "comment": "",
+      "command": "click",
+      "target": "id=lUserName",
+      "targets": [
+        ["id=lUserName", "id"],
+        ["css=#lUserName", "css:finder"],
+        ["css=#lUserName", "css"],
+        ["xpath=//input[@id='lUserName']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "ac2828cc-abbf-49d5-bb73-d8d886854c69",
+      "comment": "",
+      "command": "type",
+      "target": "id=lUserName",
+      "targets": [
+        ["id=lUserName", "id"],
+        ["css=#lUserName", "css:finder"],
+        ["css=#lUserName", "css"],
+        ["xpath=//input[@id='lUserName']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "ppt"
+    }, {
+      "id": "93938b71-d597-4ca9-8bc3-94f0f89f9fd6",
+      "comment": "",
+      "command": "type",
+      "target": "id=lPwd",
+      "targets": [
+        ["id=lPwd", "id"],
+        ["css=#lPwd", "css:finder"],
+        ["css=#lPwd", "css"],
+        ["xpath=//input[@id='lPwd']", "xpath:attributes"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": "ppt"
+    }, {
+      "id": "06a0b274-32d8-4f90-9b97-ef8e0fde7fb5",
+      "comment": "",
+      "command": "click",
+      "target": "id=btnlogin",
+      "targets": [
+        ["id=btnlogin", "id"],
+        ["css=#btnlogin", "css:finder"],
+        ["css=#btnlogin", "css"],
+        ["xpath=//button[@id='btnlogin']", "xpath:attributes"],
+        ["xpath=//button", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "db60c10c-40cb-4b3f-8586-e1e0705466b3",
+      "comment": "",
+      "command": "click",
+      "target": "id=btnPiedraPapelTijera",
+      "targets": [
+        ["id=btnPiedraPapelTijera", "id"],
+        ["css=#btnPiedraPapelTijera", "css:finder"],
+        ["css=#btnPiedraPapelTijera", "css"],
+        ["xpath=//button[@id='btnPiedraPapelTijera']", "xpath:attributes"],
+        ["xpath=//button", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "95614f5b-d979-4d29-8be6-f286639cd15f",
+      "comment": "",
+      "command": "click",
+      "target": "id=btnReset",
+      "targets": [
+        ["id=btnReset", "id"],
+        ["css=#btnReset", "css:finder"],
+        ["css=#btnReset", "css"],
+        ["xpath=//button[@id='btnReset']", "xpath:attributes"],
+        ["xpath=//button", "xpath:position"]
+      ],
+      "value": ""
+    }]
+  }],
+  "suites": [{
+    "id": "3a01e8fd-d85c-473b-8051-1a74c75eefdd",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": ["f2ed5343-e8d6-47a4-a448-abc3a0b53b45"]
+  }],
+  "urls": ["http://localhost:8080/"],
+  "plugins": []
+}

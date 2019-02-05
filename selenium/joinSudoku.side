@@ -1,0 +1,206 @@
+{
+  "id": "8081e660-386b-49c7-80ea-1b8b75ac1fdd",
+  "version": "2.0",
+  "name": "joinSudoku",
+  "url": "http://localhost:8080",
+  "tests": [{
+    "id": "84220d07-490e-4aa6-8159-aae4d4c072a0",
+    "name": "joinSudoku",
+    "commands": [{
+      "id": "d9c8c42e-63a8-4e9f-9dc2-fec754d6000d",
+      "comment": "",
+      "command": "open",
+      "target": "/index.html",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "1c845614-855a-43c6-8305-fc75b60bdebf",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1518x806",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "33631f60-6c41-4fff-a1d9-76957b269dc0",
+      "comment": "",
+      "command": "click",
+      "target": "id=btnNewUser",
+      "targets": [
+        ["id=btnNewUser", "id"],
+        ["css=#btnNewUser", "css:finder"],
+        ["css=#btnNewUser", "css"],
+        ["xpath=//a[contains(text(),'Sing Up')]", "xpath:link"],
+        ["xpath=//a[@id='btnNewUser']", "xpath:attributes"],
+        ["xpath=//a[@href='http://localhost:8080/singUp.html']", "xpath:href"],
+        ["xpath=//div[7]/div/a", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "bfa013c7-3203-46c7-9374-612beeaca2b6",
+      "comment": "",
+      "command": "click",
+      "target": "id=lUserName",
+      "targets": [
+        ["id=lUserName", "id"],
+        ["css=#lUserName", "css:finder"],
+        ["css=#lUserName", "css"],
+        ["xpath=//input[@id='lUserName']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "636a073c-ccd4-446c-827b-a517f71db83e",
+      "comment": "",
+      "command": "type",
+      "target": "id=lUserName",
+      "targets": [
+        ["id=lUserName", "id"],
+        ["css=#lUserName", "css:finder"],
+        ["css=#lUserName", "css"],
+        ["xpath=//input[@id='lUserName']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "sudoku"
+    }, {
+      "id": "2f0a2011-abdc-43e2-a8ba-7346241ea866",
+      "comment": "",
+      "command": "type",
+      "target": "id=lMail",
+      "targets": [
+        ["id=lMail", "id"],
+        ["css=#lMail", "css:finder"],
+        ["css=#lMail", "css"],
+        ["xpath=//input[@id='lMail']", "xpath:attributes"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": "sudoku@sudoku"
+    }, {
+      "id": "647fafc9-39eb-48b3-af7c-c1e40b01341a",
+      "comment": "",
+      "command": "type",
+      "target": "id=lPwd1",
+      "targets": [
+        ["id=lPwd1", "id"],
+        ["css=#lPwd1", "css:finder"],
+        ["css=#lPwd1", "css"],
+        ["xpath=//input[@id='lPwd1']", "xpath:attributes"],
+        ["xpath=//div[3]/input", "xpath:position"]
+      ],
+      "value": "sudoku"
+    }, {
+      "id": "85b5ef80-4a44-43c6-ad73-95074feab7e6",
+      "comment": "",
+      "command": "type",
+      "target": "id=lPwd2",
+      "targets": [
+        ["id=lPwd2", "id"],
+        ["css=#lPwd2", "css:finder"],
+        ["css=#lPwd2", "css"],
+        ["xpath=//input[@id='lPwd2']", "xpath:attributes"],
+        ["xpath=//div[4]/input", "xpath:position"]
+      ],
+      "value": "sudoku"
+    }, {
+      "id": "99fc61fa-b925-45df-a782-f21243cc947d",
+      "comment": "",
+      "command": "click",
+      "target": "id=btnSingUP",
+      "targets": [
+        ["id=btnSingUP", "id"],
+        ["css=#btnSingUP", "css:finder"],
+        ["css=#btnSingUP", "css"],
+        ["xpath=//button[@id='btnSingUP']", "xpath:attributes"],
+        ["xpath=//button", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "b2a41f8b-9b28-4211-8498-9cc2838a64f8",
+      "comment": "",
+      "command": "click",
+      "target": "id=lUserName",
+      "targets": [
+        ["id=lUserName", "id"],
+        ["css=#lUserName", "css:finder"],
+        ["css=#lUserName", "css"],
+        ["xpath=//input[@id='lUserName']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "444b936e-0430-4222-99ec-1fb92822d6a1",
+      "comment": "",
+      "command": "type",
+      "target": "id=lUserName",
+      "targets": [
+        ["id=lUserName", "id"],
+        ["css=#lUserName", "css:finder"],
+        ["css=#lUserName", "css"],
+        ["xpath=//input[@id='lUserName']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "sudoku"
+    }, {
+      "id": "b996c302-2afe-4ef3-abac-37422042e947",
+      "comment": "",
+      "command": "type",
+      "target": "id=lPwd",
+      "targets": [
+        ["id=lPwd", "id"],
+        ["css=#lPwd", "css:finder"],
+        ["css=#lPwd", "css"],
+        ["xpath=//input[@id='lPwd']", "xpath:attributes"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": "sudoku"
+    }, {
+      "id": "3d222f31-304d-4272-ab41-bcd3da842d13",
+      "comment": "",
+      "command": "click",
+      "target": "id=btnlogin",
+      "targets": [
+        ["id=btnlogin", "id"],
+        ["css=#btnlogin", "css:finder"],
+        ["css=#btnlogin", "css"],
+        ["xpath=//button[@id='btnlogin']", "xpath:attributes"],
+        ["xpath=//button", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "19dd00c4-caa3-49d1-9c71-ae2ed4e44b5e",
+      "comment": "",
+      "command": "click",
+      "target": "id=btnSudoku",
+      "targets": [
+        ["id=btnSudoku", "id"],
+        ["css=#btnSudoku", "css:finder"],
+        ["css=#btnSudoku", "css"],
+        ["xpath=//button[@id='btnSudoku']", "xpath:attributes"],
+        ["xpath=//div[2]/div/button", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "3161125f-f37f-44bd-acf7-f27e94d35cf2",
+      "comment": "",
+      "command": "click",
+      "target": "id=btnReset",
+      "targets": [
+        ["id=btnReset", "id"],
+        ["css=#btnReset", "css:finder"],
+        ["css=#btnReset", "css"],
+        ["xpath=//button[@id='btnReset']", "xpath:attributes"],
+        ["xpath=//button", "xpath:position"]
+      ],
+      "value": ""
+    }]
+  }],
+  "suites": [{
+    "id": "140fd1b4-003b-46c4-9a11-727858eb93ed",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": ["84220d07-490e-4aa6-8159-aae4d4c072a0"]
+  }],
+  "urls": ["http://localhost:8080/"],
+  "plugins": []
+}

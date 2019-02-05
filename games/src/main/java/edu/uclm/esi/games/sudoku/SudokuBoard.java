@@ -63,7 +63,7 @@ public class SudokuBoard extends Board {
 	}
 
 	@Override
-	public void move(Player player, int[] coordinates) throws Exception {
+	public void move(Player player, int coordinates) throws Exception {
 		// TODO Auto-generated method stub
 
 	}

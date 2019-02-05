@@ -54,15 +54,15 @@ public abstract class Match {
 		return currentPlayer;
 	}
 
-	public Match move(Player player, int[] coordinates) throws Exception {
-		if (this.players.get(currentPlayer)!=player)
-			throw new Exception("You are not the current player");
-		if (this.winner!=null)
-			throw new Exception("The match is finished");
+	public Match move(Player player, int coordinates) throws Exception {
+//		if (this.players.get(currentPlayer)!=player)
+//			throw new Exception("You are not the current player");
+//		if (this.winner!=null)
+//			throw new Exception("The match is finished");
 		this.board.move(player, coordinates);
-		this.currentPlayer=(this.currentPlayer+1)%this.players.size();
-		if (this.board.win(player))
-			this.winner=player;
+//		this.currentPlayer=(this.currentPlayer+1)%this.players.size();
+//		if (this.board.win(player))
+//			this.winner=player;
 		return this;
 	}
 

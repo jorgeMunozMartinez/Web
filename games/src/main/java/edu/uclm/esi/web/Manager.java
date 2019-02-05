@@ -46,12 +46,12 @@ public class Manager {
 		return jsa;
 	}
 
-	public Match move(Player player, JSONArray coordinates) throws Exception {
-		int [] iC = new int[coordinates.length()];
-		for (int i=0; i<iC.length; i++) {
-			iC[i]=coordinates.getInt(i);
-		}
-		return player.move(iC);
+	public Match move(Player player, int coordinates) throws Exception {
+//		int [] iC = new int[coordinates.length()];
+//		for (int i=0; i<iC.length; i++) {
+//			iC[i]=coordinates.getInt(i);
+//		}
+		return player.move(coordinates);
 	}
 
 }

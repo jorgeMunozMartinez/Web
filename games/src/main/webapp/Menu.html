@@ -12,14 +12,6 @@
 	<div class="container-login100"
 		style="background-image: url('images/bg-01.jpg');">
 		<div class="wrap-login100 p-l-55 p-r-55 p-t-50 p-b-40">
-			<span class="login100-form-title p-b-40"> Log out </span>
-			<div class="container-login100-form-btn  p-b-20 ">
-				<div class="wrap-login100-form-btn">
-					<div class="login100-form-bgbtn"></div>
-					<button class="login100-form-btn" onclick="signOut();"
-						id="btnLogOut">Log out</button>
-				</div>
-			</div>
 			<span class="login100-form-title p-b-30 "> Games </span>
 			<div class="container-login100-form-btn p-b-20">
 				<div class="wrap-login100-form-btn">
@@ -31,19 +23,89 @@
 			<div class="container-login100-form-btn p-b-20">
 				<div class="wrap-login100-form-btn">
 					<div class="login100-form-bgbtn"></div>
-					<button class="login100-form-btn" onclick="sudoku()"
-						id="btnSudoku">Sudoku</button>
+					<button class="login100-form-btn" onclick="sudoku()" id="btnSudoku">Sudoku</button>
+				</div>
+			</div>
+
+			<span class="login100-form-title p-b-30 "> Global chat </span>
+			<div class="container-login100-form-btn p-b-20">
+				<div class="wrap-login100-form-btn">
+					<div class="login100-form-bgbtn"></div>
+					<button class="login100-form-btn" onclick="connect()"
+						id="btnConnect">Connect chat</button>
+				</div>
+			</div>
+			<div class="container-login100-form-btn p-b-20">
+				<div class="wrap-login100-form-btn">
+					<div class="login100-form-bgbtn"></div>
+					<button class="login100-form-btn" onclick="disconnect()" id="btnDC">Disconnect
+						chat</button>
+				</div>
+			</div>
+			<div>
+				<textarea id="chatbox"></textarea>
+			</div>
+			<div class="wrap-input100  m-b-23">
+				<span class="label-input100">Message</span> <input class="input100"
+					type="text" placeholder="Type your message" id="lMessage" value="">
+			</div>
+			<div class="container-login100-form-btn p-b-20">
+				<div class="wrap-login100-form-btn">
+					<div class="login100-form-bgbtn"></div>
+					<button class="login100-form-btn" onclick="send()" id="btnSend">Send</button>
 				</div>
 			</div>
 		</div>
 	</div>
 </body>
 <script>
-	function signOut() {
-		var auth2 = gapi.auth2.getAuthInstance();
-		auth2.signOut().then(function() {
-			window.location.href = "http://localhost:8080/index.html";
-		});
+	document.getElementById("chatbox").disabled = true;
+	document.getElementById("btnDC").disabled = true;
+	var ws;
+	function connect() {
+		document.getElementById("btnConnect").disabled = true;
+		document.getElementById("btnDC").disabled = false;
+		ws = new WebSocket("ws://localhost:8080/gamews");
+		ws.onopen = function() {
+			var p = {
+				TYPE : "joinChat",
+			}
+			ws.send(JSON.stringify(p));
+		}
+		ws.onmessage = function(message) {
+			var data = message.data;
+			data = JSON.parse(data);
+			if (data.TYPE == "chat") {
+				alert("Youre connected to chat");
+				var text = document.getElementById("chatbox");
+				text.innerHTML = " " + text.innerHTML + "\n" + data.text;
+			} else if (data.TYPE == "msg") {
+				var text = document.getElementById("chatbox");
+				text.innerHTML = " " + text.innerHTML + "\n" + data.nombre
+						+ ": " + data.text;
+			}
+		}
+		ws.onclose = function() {
+			alert("Youre disconnected from chat");
+			document.getElementById("btnConnect").disabled = false;
+			document.getElementById("btnDC").disabled = true;
+			var text = document.getElementById("chatbox");
+			text.innerHTML = "";
+		}
+	}
+	function disconnect() {
+
+		ws.onclose();
+
+	}
+
+	function send() {
+		var p = {
+			TYPE : "msg",
+			text : lMessage.value
+		}
+		ws.send(JSON.stringify(p));
+		document.getElementById("lMessage").value = "";
 	}
 	function ppt() {
 		window.location.href = "http://localhost:8080/ppt.html";

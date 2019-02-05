@@ -130,7 +130,7 @@ public class Player {
 		return currentMatch;
 	}
 
-	public Match move(int[] coordinates) throws Exception {
+	public Match move(int coordinates) throws Exception {
 		return this.currentMatch.move(this, coordinates);
 	}
 

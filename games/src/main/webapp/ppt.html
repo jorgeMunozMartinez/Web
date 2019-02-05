@@ -10,6 +10,7 @@
 		<div class="wrap-login100 p-l-55 p-r-55 p-t-50 p-b-40">
 			<span class="login100-form-title p-b-40"> Piedra Papel Tijera
 			</span>
+			<div class="login100-form-titleII p-b-20" id="status"></div>
 			<div class="container-login100-form-btn p-b-20 ">
 				<div class="wrap-login100-form-btn">
 					<div class="login100-form-bgbtn"></div>
@@ -23,36 +24,45 @@
 			<div class="container-login100-form-btn ">
 				<div class="wrap-login100-form-btn">
 					<div class="login100-form-bgbtn"></div>
-					<button class="login100-form-btn" onclick="enviar()" id="btnReset">Piedra</button>
+					<button class="login100-form-btn" onclick="enviar(0)"
+						id="btnPiedra">Piedra</button>
 				</div>
 			</div>
 			<div class="container-login100-form-btn p-t-30 ">
 				<div class="wrap-login100-form-btn">
 					<div class="login100-form-bgbtn"></div>
-					<button class="login100-form-btn" onclick="enviar()" id="btnReset">Papel</button>
+					<button class="login100-form-btn" onclick="enviar(1)" id="btnPapel">Papel</button>
 				</div>
 			</div>
 			<div class="container-login100-form-btn p-t-30 ">
 				<div class="wrap-login100-form-btn">
 					<div class="login100-form-bgbtn"></div>
-					<button class="login100-form-btn" onclick="enviar()" id="btnReset">Tijera</button>
+					<button class="login100-form-btn" onclick="enviar(2)"
+						id="btnTijera">Tijera</button>
 				</div>
 			</div>
 			<div class="p-t-30">
-				<p class="input100" id="resul">Resultado:</p>
+				<p class="input100" id="resul"></p>
 			</div>
 			<div class="p-t-30">
-				<p class="input100" id="oponente">Seleccion del oponente:</p>
+				<p class="input100" id="est"></p>
 			</div>
 			<div class="p-t-30">
-				<p class="input100" id="propia">Seleccion propia:</p>
+				<p class="input100" id="oponente"></p>
 			</div>
 		</div>
 	</div>
 </body>
 <script>
+	document.getElementById("btnPiedra").disabled = true;
+	document.getElementById("btnPapel").disabled = true;
+	document.getElementById("btnTijera").disabled = true;
 	var player0, player1;
 	var ws;
+	var p = {
+		TYPE : "MOVEMENT",
+		coordinates : Math.random() * (2)
+	}
 	function myFunction() {
 		ws = new WebSocket("ws://localhost:8080/gamews");
 		ws.onopen = function() {
@@ -69,22 +79,56 @@
 				document.getElementById("demo").innerHTML = "" + data.text;
 			} else if (data.TYPE == "match") {
 				document.getElementById("demo").innerHTML = "" + data.text;
-				player0 = data.player0;
-				player1 = data.player1;
+				document.getElementById("btnPiedra").disabled = false;
+				document.getElementById("btnPapel").disabled = false;
+				document.getElementById("btnTijera").disabled = false;
+			} else if (data.TYPE == "empate") {
+				document.getElementById("resul").innerHTML = "" + data.text;
+				document.getElementById("oponente").innerHTML = ""
+						+ data.selected;
+				document.getElementById("est").innerHTML = "" + data.status;
+				document.getElementById("btnPiedra").disabled = false;
+				document.getElementById("btnPapel").disabled = false;
+				document.getElementById("btnTijera").disabled = false;
+
+			} else if (data.TYPE == "gana") {
+				document.getElementById("resul").innerHTML = "" + data.text;
+				document.getElementById("oponente").innerHTML = ""
+						+ data.selected;
+				document.getElementById("est").innerHTML = "" + data.status;
+				document.getElementById("btnPiedra").disabled = false;
+				document.getElementById("btnPapel").disabled = false;
+				document.getElementById("btnTijera").disabled = false;
+
+			} else if (data.TYPE == "pierde") {
+				document.getElementById("resul").innerHTML = "" + data.text;
+				document.getElementById("oponente").innerHTML = ""
+						+ data.selected;
+				document.getElementById("est").innerHTML = "" + data.status;
+				document.getElementById("btnPiedra").disabled = false;
+				document.getElementById("btnPapel").disabled = false;
+				document.getElementById("btnTijera").disabled = false;
+
+			} else if (data.TYPE = "espera") {
+				document.getElementById("resul").innerHTML = "" + data.text;
+				document.getElementById("btnPiedra").disabled = true;
+				document.getElementById("btnPapel").disabled = true;
+				document.getElementById("btnTijera").disabled = true;
+			} else if (data.TYPE = "fin") {
+				document.getElementById("resul").innerHTML = "" + data.text;
+				alert();
+				ws.onclose();
 			}
+		}
+		ws.onclose = function() {
+			window.location.href = "http://localhost:8080/menu.html";
 		}
 	}
 	function enviar(valor) {
-		var p = {
+		p = {
 			TYPE : "MOVEMENT",
-			coordinates : [valor],
+			coordinates : valor
 		}
 		ws.send(JSON.stringify(p));
-		ws.onmessage = function(message){
-			if (data.TYPE == "match") {
-				document.getElementById("demo").innerHTML = "" + data.text;
-			}
-		}
 	}
-	
 </script>

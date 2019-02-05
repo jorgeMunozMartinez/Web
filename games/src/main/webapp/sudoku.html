@@ -143,13 +143,6 @@
 					<button class="login100-form-btn" onclick="solve()" id="btnSolve">Solve</button>
 				</div>
 			</div>
-			<div class="container-login100-form-btn p-b-20">
-				<div class="wrap-login100-form-btn">
-					<div class="login100-form-bgbtn"></div>
-					<button class="login100-form-btn" onclick="sudoku()" id="btnSudoku">Concede</button>
-				</div>
-			</div>
-
 		</div>
 
 	</div>
@@ -209,9 +202,15 @@
 				}
 			} else if (data.TYPE == "winner") {
 				document.getElementById("demo").innerHTML = "" + data.text;
-				alert(data.text);
-				window.location.href = "http://localhost:8080/menu.html";
+				ws.onclose();
+			} else if (data.TYPE == "looser") {
+				document.getElementById("demo").innerHTML = "" + data.text;
+				ws.onclose();
 			}
+		}
+		ws.onclose = function() {
+			alert("Fin partida");
+			window.location.href = "http://localhost:8080/menu.html";
 		}
 	}
 	function getRandomArbitrary() {
@@ -227,7 +226,7 @@
 				if (grid.value != board.charAt(elem)) {
 					grid.style.background = "#EB1616";
 					correct = false;
-				}else{
+				} else {
 					grid.style.background = "#26FA0A";
 				}
 				elem++;

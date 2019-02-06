@@ -18,11 +18,11 @@
 	background-color: #666666;
 }
 
-.celdaBorde {
+.gridBorde {
 	border-left: 3px solid black;
 }
 
-.bordeTabla td {
+.bordeTd td {
 	border-bottom: 3px solid black;
 }
 
@@ -579,10 +579,20 @@ iframe {
 
 /*//////////////////////////////////////////////////////////////////
 [ Responsive ]*/
-@media ( max-width : 576px) {
+@media ( max-width : 800px) {
 	.wrap-login100 {
 		padding-left: 15px;
 		padding-right: 15px;
+	}
+	#chatbox {
+		text-align: left;
+		margin: 0 auto;
+		margin-bottom: 25px;
+		background: #fff;
+		height: 375px;
+		width: 390px;
+		border: 1px solid #5b2c6f;
+		overflow: auto;
 	}
 }
 /* Diseño para tabletas */

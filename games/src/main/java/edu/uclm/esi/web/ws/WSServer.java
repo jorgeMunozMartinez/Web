@@ -108,6 +108,30 @@ public class WSServer extends TextWebSocketHandler {
 					sessionII.sendMessage(messageTT);
 				}
 
+			}else if (jso.getString("text").equals("key")) {
+				Player player = (Player) session.getAttributes().get("player");
+				String value = jso.getString("selected");
+				String clave = "e"+value;
+				if(clave.length()==2) {
+					clave = "e0"+value;
+				}
+				String player0 = jso.getString("player0");
+				String player1 = jso.getString("player1");
+				if (player.getUserName().equals(player0)) {
+					JSONObject obj = new JSONObject();
+					obj.put("TYPE", "selected");
+					obj.put("item", clave);
+					WebSocketSession sessionI = sessionsByPlayer.get(player1);
+					WebSocketMessage<?> messageT = new TextMessage(obj.toString());
+					sessionI.sendMessage(messageT);
+				}else {
+					JSONObject obj = new JSONObject();
+					obj.put("TYPE", "selected");
+					obj.put("item", clave);
+					WebSocketSession sessionI = sessionsByPlayer.get(player0);
+					WebSocketMessage<?> messageT = new TextMessage(obj.toString());
+					sessionI.sendMessage(messageT);
+				}
 			}
 
 		} else if (jso.getString("TYPE").equals("joinChat")) {

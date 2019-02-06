@@ -11,6 +11,7 @@ import edu.uclm.esi.mongolabels.dao.MongoBroker;
 import edu.uclm.esi.mongolabels.labels.Bsonable;
 
 public class Player {
+
 	@Bsonable
 	private String userName;
 	@Bsonable
@@ -25,7 +26,11 @@ public class Player {
 	@JsonIgnore
 	private Match currentMatch;
 	
-	
+	@Override
+	public String toString() {
+		return "Player [userName=" + userName + ", email=" + email + ", pwd=" + pwd + ", tipo=" + tipo + ", id=" + id
+				+ ", session=" + session + ", currentMatch=" + currentMatch + "]";
+	}
 	
 	public Session getSession() {
 		return session;

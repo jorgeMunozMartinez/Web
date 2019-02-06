@@ -508,7 +508,7 @@
         </hashTree>
       </hashTree>
       <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="CSV Data Set Config" enabled="true">
-        <stringProp name="filename">C:/Users/Jorge/Desktop/Libro2.csv</stringProp>
+        <stringProp name="filename">D:/4º/web/Web/jmetet/Libro2.csv</stringProp>
         <stringProp name="fileEncoding"></stringProp>
         <stringProp name="variableNames"></stringProp>
         <boolProp name="ignoreFirstLine">true</boolProp>

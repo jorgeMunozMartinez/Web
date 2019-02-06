@@ -5,4 +5,6 @@
 > Usuario y contraseña de la BBDD
 >> Usuario: Makaflais
 >> Contraseña: makaflais123
-
+----
+> Jmeter:
+>> Cambiar la url en el CSV Data Set Config, "Nombre del archivo"
